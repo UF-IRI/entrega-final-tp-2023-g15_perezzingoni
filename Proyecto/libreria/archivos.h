@@ -20,6 +20,7 @@ typedef struct {
 //clientes
 //asitencias
 
+
 //Funciones para escribir los archivos
 //clases
 //clientes
