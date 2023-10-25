@@ -1,11 +1,7 @@
 #ifndef CLIENTES_H
 #define CLIENTES_H
 
-
-class clientes
-{
-public:
-    clientes();
-};
+#include "libreria_global.h"
+#include "archivos.h"
 
 #endif // CLIENTES_H
