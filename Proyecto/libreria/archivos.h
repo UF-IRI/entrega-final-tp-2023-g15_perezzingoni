@@ -1,11 +1,14 @@
 #ifndef ARCHIVOS_H
 #define ARCHIVOS_H
 
+typedef struct {
+    uint idCurso;
+    time_t fechaInscripcion;
+} Inscripcion;
 
-class archivos
-{
-public:
-    archivos();
-};
+typedef struct {
+    uint idCliente, cantInscriptos;
+    Inscripcion* CursosInscriptos;
+} Asistencia;
 
 #endif // ARCHIVOS_H
