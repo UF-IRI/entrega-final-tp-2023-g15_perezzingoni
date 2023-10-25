@@ -5,6 +5,12 @@
 #include "libreria.h"
 // structuras
 
+struct sClases {
+    unsigned int idClases;
+    str nombre;
+    double hora;
+};typedef struct sClases sClases;
+
 // enums para errores
 
 //contadores

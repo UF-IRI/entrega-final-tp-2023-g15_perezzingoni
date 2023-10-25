@@ -5,6 +5,15 @@
 #include "clases.h"
 #include "libreria.h"
 // strcturas
+struct sClientes {
+    unsigned int idCliente;
+    str nombre;
+    str apellido;
+    str email;
+    str telefono;
+    str fechaNac;
+    int estado;
+};typedef struct sClientes sClientes;
 
 // enums para errores
 
