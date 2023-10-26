@@ -12,11 +12,11 @@ struct sClases {
 };typedef struct sClases sClases;
 
 // enums para errores
+enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
 
 //contadores
 
 //Funciones
-
-// Verificar cupos
+bool VerificarCupos(sClases Clase);
 
 #endif // CLASES_H
