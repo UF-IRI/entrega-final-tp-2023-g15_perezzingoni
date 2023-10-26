@@ -24,6 +24,7 @@ enum eSrchClientes { ErrSrchCliente = -1, ExitoSrchCliente = 1 };
 enum eAnClase {ErrAnClase = -1, ExitoAnClase = 1};
 enum eCanClase {ErrCanClase = -1, ExitoCanClase = 1};
 
+
 //Funciones
 
 /* Agregar cliente
