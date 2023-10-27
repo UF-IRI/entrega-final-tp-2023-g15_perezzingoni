@@ -1,6 +1,6 @@
 #ifndef LIBRERIA_H
 #define LIBRERIA_H
-#include "libreria_global.h"
+#include <libreria_global.h>
 
 //incluimos librerias para usar en otras funciones :)
 #include <string>

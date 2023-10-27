@@ -1,9 +1,9 @@
 #ifndef CLASES_H
 #define CLASES_H
-#include "archivos.h"
-#include "clientes.h"
-#include "libreria.h"
-// structuras
+#include <archivos.h>
+#include <clientes.h>
+#include <libreria.h>
+// structuras>
 
 struct sClases {
     unsigned int idClases;

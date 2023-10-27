@@ -1,9 +1,9 @@
 #ifndef CLIENTES_H
 #define CLIENTES_H
-#include "libreria_global.h"
-#include "archivos.h"
-#include "clases.h"
-#include "libreria.h"
+#include <libreria_global.h>
+#include <archivos.h>
+#include <clases.h>
+#include <libreria.h>
 
 // strcturas
 struct sClientes {
