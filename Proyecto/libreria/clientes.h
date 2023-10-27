@@ -12,7 +12,7 @@ struct sClientes {
     str apellido;
     str email;
     str telefono;
-    str fechaNac;
+    str fechaNac
     int estado;
 };typedef struct sClientes sClientes;
 
