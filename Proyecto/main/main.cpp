@@ -7,8 +7,10 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-    ifstream infile("asistencias_1697673600000.dat", ios::binary);
+
+int main() {
+    string nombrearch="asistencia_"+time()+".dat";
+    ifstream infile("..\\..\\Proyecto\\Dataset TP\\asistencias_1697673600000.dat", ios::binary);
     if (!infile.is_open()) {
         cout << "Error opening binary file" << endl;
         return 1;
