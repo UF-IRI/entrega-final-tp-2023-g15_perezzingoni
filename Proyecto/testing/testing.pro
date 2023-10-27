@@ -13,7 +13,18 @@ isEmpty(CATCH_INCLUDE_DIR): {
 
 SOURCES += \
     main.cpp \
-    tst_proyecto.cpp
+    tst_proyecto.cpp \
+    ../libreria/archivos.cpp \
+    ../libreria/clases.cpp \
+    ../libreria/clientes.cpp \
+    ../libreria/libreria.cpp
+
+HEADERS += \
+../libreria/archivos.h \
+../libreria/clases.h \
+../libreria/clientes.h \
+../libreria/libreria.h \
+../libreria/libreria_global.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libreria/release/ -llibreria
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libreria/debug/ -llibreria

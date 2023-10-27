@@ -13,6 +13,6 @@ int main(int argc, char *argv[]) {
         cout << "Error opening binary file" << endl;
         return 1;
     }
-    infile.close("asistencias_1697673600000.dat");
+    infile.close();
     return 0;
 }
