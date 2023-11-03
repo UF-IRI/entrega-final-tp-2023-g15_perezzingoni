@@ -64,9 +64,9 @@ sCliente BuscarCliente(sClientes *misClientes, unsigned int idCliente);
 sCliente BuscarCliente(sClientes *misClientes, str Email);
 
 //Anotarse a clase
-eAnClase AnotarseClase(sCliente Cliente, sClase Clase, sAsistencias *misInscriptos);
+eAnClase AnotarseClase(sCliente Cliente, sClases Clase, sAsistencias *misInscriptos, sClases *misClases);
 
 //Cancelar clase
-eCanClase CancelarClase(sCliente Cliente, sClase Clase, sAsistencias *misInscriptos);
+eCanClase CancelarClase(sCliente Cliente, sClases Clase, sAsistencias *misInscriptos, sClases *misClases);
 
 #endif // CLIENTES_H
