@@ -6,7 +6,7 @@
 #include <libreria.h>
 
 // strcturas
-struct sClientes {
+struct sCliente {
     unsigned int idCliente;
     str nombre;
     str apellido;
@@ -14,7 +14,29 @@ struct sClientes {
     str telefono;
     str fechaNac;
     int estado;
+};typedef struct sCliente sCliente;
+
+struct sClientes{
+    sCliente misClientes;
+    int CantClientes;
+    int CantMaxima;
 };typedef struct sClientes sClientes;
+
+struct sInscripcion{
+    uint idCurso;
+    time_t fechaInscripcion;
+}; typedef struct sInscripcion sInscripcion;
+
+struct sAsistencia{
+    uint idCliente, cantInscriptos;
+    sInscripcion* CursosInscriptos;
+};typedef struct sAsistencia sAsistencia;
+
+struct sAsistencias{
+    sAsistencia* Inscriptos;
+    uint CantInscriptos;
+    uint CantMaxInscriptos;
+};typedef struct sAsistencias sAsistencias;
 
 // enums para errores
 enum eAgrClientes  { ErrAgrEspacio = -1,  ExitoAgregar = 1 };
@@ -27,13 +49,24 @@ enum eCanClase {ErrCanClase = -1, ExitoCanClase = 1};
 
 //Funciones
 
-/* Agregar cliente
- * Eliminar cliente
- * Modificar cliente
- * Buscar cliente
- * Verificar estado
- * Anotarse a clase
- * Cancelar clase
-*/
+// Agregar cliente
+eAgrClientes AgregarCliente(sClientes *misClientes, sCliente Cliente);
+
+//Modificar cliente
+eUpdClientes ActualizarCliente(sClientes *misClientes, sCliente Cliente);
+
+//Eliminar cliente
+eRmClientes RemoverCliente(sClientes *misClientes, sCliente Cliente, sAsistencias *misInscriptos);
+
+//Buscar cliente
+sCliente BuscarCliente(sClientes *misClientes, str Nombre, str Apellido);
+sCliente BuscarCliente(sClientes *misClientes, unsigned int idCliente);
+sCliente BuscarCliente(sClientes *misClientes, str Email);
+
+//Anotarse a clase
+eAnClase AnotarseClase(sCliente Cliente, sClase Clase, sAsistencias *misInscriptos);
+
+//Cancelar clase
+eCanClase CancelarClase(sCliente Cliente, sClase Clase, sAsistencias *misInscriptos);
 
 #endif // CLIENTES_H

@@ -5,10 +5,14 @@
 #include <libreria.h>
 // structuras>
 
-struct sClases {
+struct sClase {
     unsigned int idClases;
     str nombre;
     double hora;
+};typedef struct sClase sClase;
+
+struct sClases {
+
 };typedef struct sClases sClases;
 
 // enums para errores
