@@ -1,22 +1,14 @@
 #ifndef CLASES_H
 #define CLASES_H
-#include <archivos.h>
-#include <clientes.h>
-#include <libreria.h>
+#include "libreria.h"
 // structuras>
 
-struct sClase {
+struct Clase {
     unsigned int idClase;
     str nombre;
     double hora;
-};typedef struct sClase sClase;//esto nos pasa el usuario
-
-struct sClases {
-    unsigned int idClase;
-    str nombre;
-    double hora;
-    int Cupos;
-};typedef struct sClases sClases;//con este manipulamos los datos para poder tener los cupos
+    unsigned int CupoDisponible, CupoMax;
+}; typedef struct Clase sClase;//con este manipulamos los datos para poder tener los cupos
 
 // enums para errores
 enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
@@ -26,8 +18,8 @@ enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
 //Funciones
 
 //Buscar clase
-sClases BuscarClase(sClases *misClases, str Nombre, double Hora);
-sClases BuscarClase(sClases *misClases, uint idClase);
+sClase BuscarClase(sClase *misClases, str Nombre, double Hora);
+sClase BuscarClase(sClase *misClases, uint idClase);
 
 // Para el gym (si tenemos tiempo)
 

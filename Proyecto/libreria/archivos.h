@@ -1,9 +1,8 @@
 #ifndef ARCHIVOS_H
 #define ARCHIVOS_H
-#include <libreria_global.h>
-#include <clientes.h>
-#include <clases.h>
-#include <libreria.h>
+#include <fstream>
+#include "clientes.h"
+#include "clases.h"
 
 typedef struct {
     uint idCurso;
@@ -25,6 +24,5 @@ typedef struct {
 //clases
 //clientes
 //asitencias
-
 
 #endif // ARCHIVOS_H

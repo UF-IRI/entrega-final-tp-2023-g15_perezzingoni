@@ -1,9 +1,7 @@
 #ifndef CLIENTES_H
 #define CLIENTES_H
-#include <libreria_global.h>
-#include <archivos.h>
-#include <clases.h>
-#include <libreria.h>
+#include "clases.h"
+#include "libreria.h"
 
 // strcturas
 struct sCliente {
@@ -43,8 +41,8 @@ enum eAgrClientes  { ErrAgrEspacio = -1,  ExitoAgregar = 1 };
 enum eUpdClientes  { ErrUpdCliente = -1,  ExitoUpdCliente = 1 };
 enum eRmClientes   { ErrRmCliente = -1, ExitoRmCliente = 1 };
 enum eSrchClientes { ErrSrchCliente = -1, ExitoSrchCliente = 1 };
-enum eAnClase {ErrAnClase = -1, ExitoAnClase = 1};
-enum eCanClase {ErrCanClase = -1, ExitoCanClase = 1};
+typedef enum {ErrAnClase = -1, ExitoAnClase = 1} eAnClase;
+typedef enum {ErrCanClase = -1, ExitoCanClase = 1} eCanClase;
 
 
 //Funciones
@@ -64,9 +62,9 @@ sCliente BuscarCliente(sClientes *misClientes, unsigned int idCliente);
 sCliente BuscarCliente(sClientes *misClientes, str Email);
 
 //Anotarse a clase
-eAnClase AnotarseClase(sCliente Cliente, sClases Clase, sAsistencias *misInscriptos, sClases *misClases);
+eAnClase AnotarseClase(sCliente Cliente, unsigned int idClase, sAsistencias *misInscriptos, sClase *laClase);
 
 //Cancelar clase
-eCanClase CancelarClase(sCliente Cliente, sClases Clase, sAsistencias *misInscriptos, sClases *misClases);
+//eCanClase CancelarClase(sCliente Cliente, sClases _Clase, sAsistencias *misInscriptos, sClases *misClases);
 
 #endif // CLIENTES_H
