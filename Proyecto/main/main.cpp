@@ -7,22 +7,40 @@ using namespace std;
 int main() {
     sClase *misClases;
 
-    ifstream miArchivo;
-    miArchivo.open("..\\..\\Proyecto\\Dataset TP\\iriClasesGYM.csv");
-    if (!miArchivo.is_open()){
+    ifstream miArchivo1;
+    miArchivo1.open("..\\..\\Proyecto\\Dataset TP\\iriClasesGYM.csv");
+    if (!miArchivo1.is_open()){
         cout << "Error opening csv file" << endl;
         return 1;
     }
+    eLeerArchivoClases lecturaClase;
+    lecturaClase = LeerArchivoClases(miArchivo1, &misClases);
+    if(lecturaClase==ErrLeerArchivoClases)
+        return -1;
 
-    eLeerArchivoClases LeerArchivoClases(std::fstream* miArchivo, sClase *&misClases);
+    sClientes *misClientes;
+
+    ifstream miArchivo2;
+    miArchivo2.open("..\\..\\Proyecto\\Dataset TP\\iriClientesGYM.csv");
+    if (!miArchivo2.is_open()){
+        cout << "Error opening csv file" << endl;
+        return 1;
+    }
+    eLeerArchivoClientes lecturaCliente;
+    lecturaCliente = LeerArchivoClientes (miArchivo2, &misClientes);
+    if(lecturaCliente ==ErrLeerArchivoClientes)
+        return -1;
 
     //string nombrearch="asistencia_"/*+string(time(NULL))*/+".dat";
 
+    sAsistencia *misAsistencias;
     ifstream infile("..\\..\\Proyecto\\Dataset TP\\asistencias_1697673600000.dat", ios::binary);
     if (!infile.is_open()) {
         cout << "Error opening binary file" << endl;
         return 1;
     }
+    eLeerArchivoAsistencias lecturaAsistencias;
+    lecturaAsistencias= LeerArchivoAsistencias(infile, &misAsistencias);
     infile.close();
 
     return 0;

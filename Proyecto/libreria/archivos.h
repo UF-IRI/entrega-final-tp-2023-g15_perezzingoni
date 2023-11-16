@@ -3,31 +3,28 @@
 #include <fstream>
 #include <sstream>
 #include "clientes.h"
-#include "clases.h"
 
-typedef struct {
+struct Inscripcion{
     uint idCurso;
     time_t fechaInscripcion;
-} Inscripcion;
+}; typedef struct Inscripcion Inscripcion;
 
-typedef struct {
+struct Asistencia{
     uint idCliente, cantInscriptos;
     Inscripcion* CursosInscriptos;
-} Asistencia;
+}; typedef struct Asistencia Asistencia;
 
 //enums para errores
 enum eLeerArchivoClases {ErrLeerArchivoClases = -1, ExitoLeerArchivoClases = 1};
 enum eLeerArchivoClientes {ErrLeerArchivoClientes = -1, ExitoLeerArchivoClientes = 1};
+enum eLeerArchivoAsistencias {ErrLeerArchivoAsistencias = -1, ExitoLeerArchivoAsistencias = 1};
 
-//Funciones para leer archivos
-//clases
-//clientes
-//asitencias
+//Lectura de Archivos
+eLeerArchivoClases LeerArchivoClases (ifstream &miArchivo, sClase **misClases);
+eLeerArchivoClientes LeerArchivoClientes (ifstream &miArchivo, sCliente **misClientes);
+eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia **misAsistencias);
 
-//leer archivo clases
-eLeerArchivoClases LeerArchivoClases (ifstream miArchivo, sClase *&misClases);
-
-//Funciones para escribir los archivos
+    //Funciones para escribir los archivos
 //clases
 //clientes
 //asitencias

@@ -8,7 +8,7 @@ struct Clase {
     str nombre;
     double hora;
     unsigned int CupoDisponible, CupoMax;
-}; typedef struct Clase sClase;//con este manipulamos los datos para poder tener los cupos
+}; typedef struct Clase sClase;
 
 // enums para errores
 enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
