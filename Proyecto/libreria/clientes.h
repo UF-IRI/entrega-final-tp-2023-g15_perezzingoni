@@ -52,7 +52,7 @@ eAgrClientes AgregarCliente(sClientes *misClientes, sCliente Cliente, u_int cant
 void resizeContactos(sClientes** miLista, u_int tam, u_int nuevoTam);
 
 //Modificar cliente
-eUpdClientes ActualizarCliente(sClientes *misClientes, sCliente Cliente);
+eUpdClientes ActualizarCliente(sClientes *misClientes, sCliente ClienteActualizado, sCliente Cliente);
 
 //Eliminar cliente
 eRmClientes RemoverCliente(sClientes *misClientes, sCliente Cliente, sAsistencias *misInscriptos);

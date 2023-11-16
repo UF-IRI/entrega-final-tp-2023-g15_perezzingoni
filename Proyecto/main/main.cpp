@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     sClase *misClases;
 
-    fstream miArchivo;
+    ifstream miArchivo;
     miArchivo.open("..\\..\\Proyecto\\Dataset TP\\iriClasesGYM.csv");
     if (!miArchivo.is_open()){
         cout << "Error opening csv file" << endl;

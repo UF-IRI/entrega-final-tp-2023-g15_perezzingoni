@@ -46,6 +46,26 @@ void resizeContactos(sClientes** misClientes, u_int tam, u_int nuevoTam) {
     *misClientes = aux;
 }
 
+eUpdClientes ActualizarCliente(sClientes *misClientes, sCliente ClienteActualizado, sCliente Cliente){
+    if(misClientes==nullptr){
+        return eUpdClientes::ErrUpdCliente;
+    }
+
+    sCliente* aux = misClientes->misClientes;
+    sClientes* ultimo = misClientes->CantClientes-1;
+
+    while(true){
+        if(aux->nombre==Cliente.nombre && aux.apellido==Cliente.apellido){
+            Cliente = ClienteActualizado;
+            return eUpdClientes::ExitoUpdCliente;
+        }
+        if(aux==ultimo)
+            break;
+        aux++;
+    }
+    return eUpdClientes::ErrUpdCliente;
+}
+
 eSrchClientes BuscarCliente(sClientes *misClientes, str Nombre, str Apellido, sCliente& Cliente){
     if(misClientes==nullptr)
         return eSrchClientes::ErrSrchCliente;

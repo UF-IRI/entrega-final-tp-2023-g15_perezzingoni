@@ -1,6 +1,7 @@
 #ifndef ARCHIVOS_H
 #define ARCHIVOS_H
 #include <fstream>
+#include <sstream>
 #include "clientes.h"
 #include "clases.h"
 
@@ -24,7 +25,7 @@ enum eLeerArchivoClientes {ErrLeerArchivoClientes = -1, ExitoLeerArchivoClientes
 //asitencias
 
 //leer archivo clases
-eLeerArchivoClases LeerArchivoClases (std::fstream* miArchivo, sClase *&misClases);
+eLeerArchivoClases LeerArchivoClases (ifstream miArchivo, sClase *&misClases);
 
 //Funciones para escribir los archivos
 //clases
