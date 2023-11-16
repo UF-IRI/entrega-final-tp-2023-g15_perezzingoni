@@ -14,11 +14,17 @@ typedef struct {
     Inscripcion* CursosInscriptos;
 } Asistencia;
 
+//enums para errores
+enum eLeerArchivoClases {ErrLeerArchivoClases = -1, ExitoLeerArchivoClases = 1};
+enum eLeerArchivoClientes {ErrLeerArchivoClientes = -1, ExitoLeerArchivoClientes = 1};
+
 //Funciones para leer archivos
 //clases
 //clientes
 //asitencias
 
+//leer archivo clases
+eLeerArchivoClases LeerArchivoClases(std::fstream* miArchivo, sClase *&misClases);
 
 //Funciones para escribir los archivos
 //clases
