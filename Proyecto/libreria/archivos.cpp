@@ -1,5 +1,4 @@
 #include "archivos.h"
-/*
 eLeerArchivoClases LeerArchivoClases(std::fstream* miArchivo, sClase *&misClases){
     if(!miArchivo.is_open()){
         return ErrLeerArchivoClases;
@@ -40,4 +39,3 @@ eLeerArchivoClases LeerArchivoClases(std::fstream* miArchivo, sClase *&misClases
     return ExitoLeerArchivoClases;
 }
 
-*/
