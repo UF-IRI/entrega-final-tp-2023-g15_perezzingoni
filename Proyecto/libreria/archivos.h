@@ -24,7 +24,7 @@ enum eLeerArchivoClientes {ErrLeerArchivoClientes = -1, ExitoLeerArchivoClientes
 //asitencias
 
 //leer archivo clases
-eLeerArchivoClases LeerArchivoClases(std::fstream* miArchivo, sClase *&misClases);
+eLeerArchivoClases LeerArchivoClases (std::fstream* miArchivo, sClase *&misClases);
 
 //Funciones para escribir los archivos
 //clases

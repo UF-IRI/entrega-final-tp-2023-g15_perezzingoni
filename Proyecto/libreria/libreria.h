@@ -9,5 +9,6 @@
 
 typedef std::string str;
 using namespace std;
+typedef unsigned int u_int;
 
 #endif // LIBRERIA_H

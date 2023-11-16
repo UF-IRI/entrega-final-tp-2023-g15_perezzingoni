@@ -48,7 +48,7 @@ typedef enum {ErrCanClase = -1, ExitoCanClase = 1} eCanClase;
 //Funciones
 
 // Agregar cliente
-eAgrClientes AgregarCliente(sClientes *misClientes, sCliente Cliente);
+eAgrClientes AgregarCliente(sClientes *misClientes, sCliente Cliente, u_int cantClientes);
 void resizeContactos(sClientes** miLista, u_int tam, u_int nuevoTam);
 
 //Modificar cliente
@@ -58,9 +58,9 @@ eUpdClientes ActualizarCliente(sClientes *misClientes, sCliente Cliente);
 eRmClientes RemoverCliente(sClientes *misClientes, sCliente Cliente, sAsistencias *misInscriptos);
 
 //Buscar cliente
-sCliente BuscarCliente(sClientes *misClientes, str Nombre, str Apellido);
-sCliente BuscarCliente(sClientes *misClientes, unsigned int idCliente);
-sCliente BuscarCliente(sClientes *misClientes, str Email);
+eSrchClientes BuscarCliente(sClientes *misClientes, str Nombre, str Apellido, sCliente& Cliente);
+eSrchClientes BuscarCliente(sClientes *misClientes, unsigned int idCliente, sCliente& Cliente);
+eSrchClientes BuscarCliente(sClientes *misClientes, str Email, sCliente& Cliente);
 
 //Anotarse a clase
 eAnClase AnotarseClase(sCliente Cliente, unsigned int idClase, sAsistencias *misInscriptos, sClase *laClase);

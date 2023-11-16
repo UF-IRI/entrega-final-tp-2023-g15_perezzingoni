@@ -1,10 +1,12 @@
 #include <catch2/catch.hpp>
+#include "archivos.h"
+#include <iostream>
 
 TEST_CASE( "Agregar Cliente" ) {
-    sClientes* MisClientes = new sClientes;
+    sClientes* MisClientes = new sClientes[0];
     REQUIRE(MisClientes != nullptr);
 
-    MisClientes->CantMaxima = 6;
+    MisClientes->CantMaxima = 0;
     MisClientes->CantClientes = 0;
     MisClientes->misClientes = new sCliente[MisClientes->CantMaxima];
 
@@ -16,21 +18,67 @@ TEST_CASE( "Agregar Cliente" ) {
     eAgrClientes verificar;
 
     //Agrego dos clientes diferentes que tendrian que funcionar correctamente
-    verificar= AgregarCliente(&MisClientes, Cliente1, MisClientes->CantClientes);
+    verificar= AgregarCliente(MisClientes, Cliente1, MisClientes->CantClientes);
     REQUIRE(verificar==ExitoAgregar);
-    verificar= AgregarCliente(&MisClientes, Cliente2, MisClientes->CantClientes);
+    verificar= AgregarCliente(MisClientes, Cliente2, MisClientes->CantClientes);
     REQUIRE(verificar==ExitoAgregar);
 
     REQUIRE(MisClientes->CantClientes == 2);
     REQUIRE(MisClientes->CantMaxima == 5);
 
-    REQUIRE(MisClientes->misClientes[1]==Cliente1);
-    REQUIRE(MisClientes->misClientes[2]==Cliente2);
-
     //Casos que no tendrian que funcionar
-    verificar= AgregarCliente(&MisClientes, Cliente3, -1);
+    //cant negativa
+    verificar= AgregarCliente(MisClientes, Cliente3, -1);
     REQUIRE(verificar==ErrAgrEspacio);
 
+    //cliente ya existente
+    verificar= AgregarCliente(MisClientes, Cliente2, 2);
+    REQUIRE(verificar==ErrAgrExiste);
+    //
     delete[] MisClientes->misClientes;
     delete MisClientes;
 }
+
+TEST_CASE("Buscar contacto"){
+    sClientes* MisClientes = new sClientes[3];
+    REQUIRE(MisClientes != nullptr);
+
+    MisClientes->CantMaxima = 5;
+    MisClientes->CantClientes = 3;
+    MisClientes->misClientes = new sCliente[MisClientes->CantMaxima];
+
+    REQUIRE(MisClientes->misClientes != nullptr);
+
+    sCliente Cliente1={1,"Cami", "Perez", "gmail.com","333","124", 0 };
+    sCliente Cliente2={2,"Tini", "Zongoni", "yahoo.com","123","456", 0 };
+    sCliente Cliente3={3,"Tomy", "Rodriguez", "hotmail.com","000","777", 0 };
+    sCliente Busqueda;
+
+    MisClientes->misClientes[0]=Cliente1;
+    MisClientes->misClientes[1]=Cliente2;
+    MisClientes->misClientes[2]=Cliente3;
+
+    eSrchClientes verificar;
+
+    //Si paso el Nombre y Apellido
+    verificar=BuscarCliente(MisClientes, "Cami", "Perez", Busqueda);
+    REQUIRE(Busqueda.idCliente==Cliente1.idCliente);
+    REQUIRE(verificar== ExitoSrchCliente);
+
+    //Si paso el id
+    verificar=BuscarCliente(MisClientes,2,Busqueda);
+    REQUIRE(Busqueda.idCliente==Cliente2.idCliente);
+    REQUIRE(verificar== ExitoSrchCliente);
+
+    //Si paso el email
+    verificar=BuscarCliente(MisClientes, "hotmail.com", Busqueda);
+    REQUIRE(Busqueda.idCliente==Cliente3.idCliente);
+    REQUIRE(verificar== ExitoSrchCliente);
+
+    //Paso un cliente que no existe
+    verificar=BuscarCliente(MisClientes, 4, Busqueda);
+    REQUIRE (verificar == ErrSrchNoExite);
+
+
+}
+

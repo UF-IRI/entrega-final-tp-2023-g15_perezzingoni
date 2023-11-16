@@ -19,7 +19,7 @@ eAgrClientes AgregarCliente(sClientes**misClientes, sCliente Cliente, int cantCl
 
     //si el cliente ya existe no lo agrego
     eSrchClientes verificar;
-    verificar= BuscarCliente(aux, Cliente.idCliente);
+    verificar= BuscarCliente(aux, Cliente.idCliente, Cliente);
     if(verificar== ErrSrchNoExite){
         delete[] aux;
         return eAgrClientes::ErrAgrExiste;
@@ -46,6 +46,38 @@ void resizeContactos(sClientes** misClientes, u_int tam, u_int nuevoTam) {
     *misClientes = aux;
 }
 
-eSrchClientes BuscarCliente(sClientes *misClientes, unsigned int idCliente){
+eSrchClientes BuscarCliente(sClientes *misClientes, str Nombre, str Apellido, sCliente& Cliente){
+    if(misClientes==nullptr)
+        return eSrchClientes::ErrSrchCliente;
+    for (int i=0;i<misClientes->CantClientes;i++){
+        if(misClientes->misClientes[i].nombre==Nombre && misClientes->misClientes[i].apellido==Apellido){
+            Cliente= misClientes->misClientes[i];
+            return eSrchClientes::ExitoSrchCliente;
+        }
+    }
+    return eSrchClientes::ErrSrchNoExite;
+}
 
+eSrchClientes BuscarCliente(sClientes *misClientes, unsigned int idCliente, sCliente& Cliente){
+    if(misClientes==nullptr)
+        return eSrchClientes::ErrSrchCliente;
+    for (int i=0;i<misClientes->CantClientes;i++){
+        if(misClientes->misClientes[i].idCliente==idCliente){
+            Cliente= misClientes->misClientes[i];
+            return eSrchClientes::ExitoSrchCliente;
+        }
+    }
+    return eSrchClientes::ErrSrchNoExite;
+}
+
+eSrchClientes BuscarCliente(sClientes *misClientes, str Email, sCliente& Cliente){
+    if(misClientes==nullptr)
+        return eSrchClientes::ErrSrchCliente;
+    for (int i=0;i<misClientes->CantClientes;i++){
+        if(misClientes->misClientes[i].email==Email){
+            Cliente= misClientes->misClientes[i];
+            return eSrchClientes::ExitoSrchCliente;
+        }
+    }
+    return eSrchClientes::ErrSrchNoExite;
 }
