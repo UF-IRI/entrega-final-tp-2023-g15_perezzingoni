@@ -15,7 +15,7 @@ struct sCliente {
 };typedef struct sCliente sCliente;
 
 struct sClientes{
-    sCliente misClientes;
+    sCliente *misClientes;
     int CantClientes;
     int CantMaxima;
 };typedef struct sClientes sClientes;
@@ -37,10 +37,10 @@ struct sAsistencias{
 };typedef struct sAsistencias sAsistencias;
 
 // enums para errores
-enum eAgrClientes  { ErrAgrEspacio = -1,  ExitoAgregar = 1 };
+enum eAgrClientes  { ErrAgrExiste= -2, ErrAgrEspacio = -1,  ExitoAgregar = 1 };
 enum eUpdClientes  { ErrUpdCliente = -1,  ExitoUpdCliente = 1 };
 enum eRmClientes   { ErrRmCliente = -1, ExitoRmCliente = 1 };
-enum eSrchClientes { ErrSrchCliente = -1, ExitoSrchCliente = 1 };
+enum eSrchClientes { ErrSrchNoExite = -2,ErrSrchCliente = -1, ExitoSrchCliente = 1 };
 typedef enum {ErrAnClase = -1, ExitoAnClase = 1} eAnClase;
 typedef enum {ErrCanClase = -1, ExitoCanClase = 1} eCanClase;
 
@@ -49,6 +49,7 @@ typedef enum {ErrCanClase = -1, ExitoCanClase = 1} eCanClase;
 
 // Agregar cliente
 eAgrClientes AgregarCliente(sClientes *misClientes, sCliente Cliente);
+void resizeContactos(sClientes** miLista, u_int tam, u_int nuevoTam);
 
 //Modificar cliente
 eUpdClientes ActualizarCliente(sClientes *misClientes, sCliente Cliente);
