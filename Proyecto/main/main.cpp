@@ -18,6 +18,7 @@ int main() {
     lecturaClase = LeerArchivoClases(miArchivo1, &misClases);
     if(lecturaClase==ErrLeerArchivoClases)
         return -1;
+    miArchivo1.close();
 
     sClientes *misClientes;
     ifstream miArchivo2;
@@ -30,6 +31,7 @@ int main() {
     lecturaCliente = LeerArchivoClientes (miArchivo2, &misClientes);
     if(lecturaCliente ==ErrLeerArchivoClientes)
         return -1;
+    miArchivo2.close();
 
 
     Asistencia *misAsistencias;
