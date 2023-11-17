@@ -12,6 +12,7 @@ struct Clase {
 
 // enums para errores
 enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
+enum eCupos{ErrCupos=-1, ErrCupos=1};
 //contadores
 
 //Funciones

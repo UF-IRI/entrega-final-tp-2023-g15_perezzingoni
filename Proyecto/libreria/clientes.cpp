@@ -121,11 +121,12 @@ eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente)
         return eRmAsistencias::ErrRmAsistencias;
     for(int i=0;i<misAsistencias->cantClientesInscriptos;i++){
         if(misAsistencias[i].idCliente==Cliente.idCliente){
+            for (int j=0;j<misAsistencias->CursosInscriptos;j++)
+               //Sumar cupos a las clases que iba a asistir
             for(int j=i;i<misAsistencias->cantClientesInscriptos;j++){
                misAsistencias[j]=misAsistencias[j+1];
             }
             misAsistencias->cantClientesInscriptos--;
-
             return eRmAsistencias::ExitoRmAsistencias;
         }
     }
