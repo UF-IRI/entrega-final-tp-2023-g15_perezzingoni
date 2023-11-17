@@ -125,4 +125,3 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
     *misAsistencias=aux;
     delete[] misAsistencias;
 }
-
