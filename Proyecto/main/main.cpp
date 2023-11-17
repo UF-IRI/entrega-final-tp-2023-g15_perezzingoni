@@ -5,8 +5,9 @@ using namespace std;
 
 //convertir de time a estructura?
 int main() {
-    sClase *misClases;
 
+    //Apertura de Archivos para Lectura
+    sClase *misClases;
     ifstream miArchivo1;
     miArchivo1.open("..\\..\\Proyecto\\Dataset TP\\iriClasesGYM.csv");
     if (!miArchivo1.is_open()){
@@ -19,7 +20,6 @@ int main() {
         return -1;
 
     sClientes *misClientes;
-
     ifstream miArchivo2;
     miArchivo2.open("..\\..\\Proyecto\\Dataset TP\\iriClientesGYM.csv");
     if (!miArchivo2.is_open()){
@@ -31,9 +31,8 @@ int main() {
     if(lecturaCliente ==ErrLeerArchivoClientes)
         return -1;
 
-    //string nombrearch="asistencia_"/*+string(time(NULL))*/+".dat";
 
-    sAsistencia *misAsistencias;
+    Asistencia *misAsistencias;
     ifstream infile("..\\..\\Proyecto\\Dataset TP\\asistencias_1697673600000.dat", ios::binary);
     if (!infile.is_open()) {
         cout << "Error opening binary file" << endl;
@@ -42,6 +41,9 @@ int main() {
     eLeerArchivoAsistencias lecturaAsistencias;
     lecturaAsistencias= LeerArchivoAsistencias(infile, &misAsistencias);
     infile.close();
+
+    //Apertura de Archivos para Escritura
+
 
     return 0;
 }

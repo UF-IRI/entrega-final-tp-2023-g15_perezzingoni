@@ -12,7 +12,6 @@ struct Clase {
 
 // enums para errores
 enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
-
 //contadores
 
 //Funciones
@@ -21,6 +20,8 @@ enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
 sClase BuscarClase(sClase *misClases, str Nombre, double Hora);
 sClase BuscarClase(sClase *misClases, uint idClase);
 
-// Para el gym (si tenemos tiempo)
+void inicializarCupos(sClase *misClases);
+
+
 
 #endif // CLASES_H

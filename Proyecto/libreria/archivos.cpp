@@ -1,4 +1,5 @@
 #include "archivos.h"
+//Lectura de archivos
 eLeerArchivoClases LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
     if(!miArchivo.is_open()){
         return ErrLeerArchivoClases;
@@ -105,6 +106,7 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
     miArchivo.seekg(ios::beg);
 
     Asistencia *aux =new  Asistencia [longitud];
+    aux->cantClientesInscriptos=longitud;
 
     while (!miArchivo.eof()) {
         miArchivo.read((char *)&aux->idCliente, sizeof(uint));
@@ -119,4 +121,8 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
 
         i++;
     }
+
+    *misAsistencias=aux;
+    delete[] misAsistencias;
 }
+
