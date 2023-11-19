@@ -2,37 +2,36 @@
 
 eAgrClientes AgregarCliente(sClientes *Clientela, sCliente Cliente){
     //condiciones de error
-    if(*misClientes==nullptr)
+    if(Clientela->misClientes==nullptr)
         return eAgrClientes::ErrAgrEspacio;
 
 
     //si el cliente ya existe no lo agrego
     eSrchClientes verificar;
-    verificar= BuscarCliente(aux, Cliente.idCliente, Cliente);
+    verificar= BuscarCliente(Clientela, Cliente.idCliente, Cliente);
     if(verificar== ErrSrchNoExite){
-        delete[] aux;
         return eAgrClientes::ErrAgrExiste;
     }
 
     //ahora sí agrego al cliente
     if(Clientela->CantClientes==Clientela->CantMaxima)
         resizeClientes(Clientela,Clientela->CantClientes,Clientela->CantClientes+5);
+    Clientela->misClientes[Clientela->CantClientes]=Cliente;
+    Clientela->CantClientes++;
 
-    delete[] *Clientela->misClientes;
-    *Clientela->misClientes = aux;
     return eAgrClientes::ExitoAgregar;
 }
 
 void resizeClientes(sClientes * Clientela, u_int tam, u_int nuevoTam) {
-    if(*Clientela->misClientes!=nullptr){
-    sClientes* aux = new sClientes[nuevoTam];
+    if(Clientela->misClientes!=nullptr){
+    sCliente*aux = new sCliente[nuevoTam];
     if(aux == nullptr)
         return;
     int longitud = (tam < nuevoTam) ? tam: nuevoTam;
     for(int i = 0; i < longitud; i++)
-        aux[i] =*Clientela->misClientes[i];
-    delete[] *Clientela->misClientes;
-    *Clientela->misClientes = aux;
+        aux[i] =Clientela->misClientes[i];
+    delete[] Clientela->misClientes;
+    Clientela->misClientes = aux;
     }
 }
 
@@ -54,8 +53,8 @@ eSrchClientes BuscarCliente(sClientes *Clientela, str Nombre, str Apellido, sCli
     if(Clientela->misClientes==nullptr)
         return eSrchClientes::ErrSrchCliente;
     for (int i=0;i<Clientela->CantClientes;i++){
-        if(Clientela->misClientes[i].nombre==Nombre && misClientes->misClientes[i].apellido==Apellido){
-            Cliente= misClientes->misClientes[i];
+        if(Clientela->misClientes[i].nombre==Nombre && Clientela->misClientes[i].apellido==Apellido){
+            Cliente= Clientela->misClientes[i];
             return eSrchClientes::ExitoSrchCliente;
         }
     }
@@ -105,7 +104,7 @@ eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, Asistencia *m
     return eRmClientes::ErrRmClienteNoExiste;
 }
 
-eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente){
+/*eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente){
     if(misAsistencias==nullptr)
         return eRmAsistencias::ErrRmAsistencias;
     for(int i=0;i<misAsistencias->cantClientesInscriptos;i++){
@@ -121,3 +120,4 @@ eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente)
     }
     return eRmAsistencias::ErrRmAsistenciasNoExiste;
 }
+*/

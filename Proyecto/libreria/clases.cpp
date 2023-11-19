@@ -1,6 +1,6 @@
 #include "clases.h"
 
-void inicializarCupos(sClase *misClases){
+/*void inicializarCupos(sClase *misClases){
     //inicializa todos los cupos de las distintas clases y musculacion
     if(misClases->nombre=='Spinning'){
         misClases->CupoDisponible=45;
@@ -31,3 +31,4 @@ void inicializarCupos(sClase *misClases){
         misClases->CupoMax=30;
     }
 }
+*/
