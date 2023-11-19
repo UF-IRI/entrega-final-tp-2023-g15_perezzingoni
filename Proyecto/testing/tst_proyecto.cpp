@@ -3,10 +3,10 @@
 #include <iostream>
 
 TEST_CASE( "Agregar Cliente" ) {
-    sClientes* MisClientes = new sClientes[0];
+    sClientes* MisClientes = new sClientes[1];
     REQUIRE(MisClientes != nullptr);
 
-    MisClientes->CantMaxima = 0;
+    MisClientes->CantMaxima = 1;
     MisClientes->CantClientes = 0;
     MisClientes->misClientes = new sCliente[MisClientes->CantMaxima];
 

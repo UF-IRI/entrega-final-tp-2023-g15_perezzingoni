@@ -20,22 +20,6 @@ struct sClientes{
     int CantMaxima;
 };typedef struct sClientes sClientes;
 
-struct sInscripcion{
-    uint idCurso;
-    time_t fechaInscripcion;
-}; typedef struct sInscripcion sInscripcion;
-
-struct sAsistencia{
-    uint idCliente, cantInscriptos;
-    sInscripcion* CursosInscriptos;
-};typedef struct sAsistencia sAsistencia;
-
-struct sAsistencias{
-    sAsistencia* Inscriptos;
-    uint CantInscriptos;
-    uint CantMaxInscriptos;
-};typedef struct sAsistencias sAsistencias;
-
 struct Inscripcion{
     uint idCurso;
     time_t fechaInscripcion;
@@ -62,19 +46,19 @@ enum eRmAsistencias {ErrRmAsistenciasNoExiste=-2, ErrRmAsistencias = -1, ExitoRm
 //Funciones
 
 // Agregar cliente
-eAgrClientes AgregarCliente(sClientes *misClientes, sCliente Cliente, u_int cantClientes);
-void resizeContactos(sClientes** miLista, u_int tam, u_int nuevoTam);
+eAgrClientes AgregarCliente(sClientes *Clientela, sCliente Cliente, u_int cantClientes);
+void resizeClientes(sClientes* miLista, u_int tam, u_int nuevoTam);
 
 //Modificar cliente
-eUpdClientes ActualizarCliente(sClientes *MisClientes, sCliente ClienteActualizado, sCliente Cliente);
+eUpdClientes ActualizarCliente(sClientes *Clientela, sCliente ClienteActualizado, sCliente Cliente);
 
 //Eliminar cliente
-eRmClientes RemoverCliente(sClientes *MisClientes, sCliente Cliente, Asistencia *misInscriptos);
+eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, Asistencia *misInscriptos);
 
 //Buscar cliente
-eSrchClientes BuscarCliente(sClientes *misClientes, str Nombre, str Apellido, sCliente& Cliente);
-eSrchClientes BuscarCliente(sClientes *misClientes, unsigned int idCliente, sCliente& Cliente);
-eSrchClientes BuscarCliente(sClientes *misClientes, str Email, sCliente& Cliente);
+eSrchClientes BuscarCliente(sClientes *Clientela, str Nombre, str Apellido, sCliente& Cliente);
+eSrchClientes BuscarCliente(sClientes *Clientela, unsigned int idCliente, sCliente& Cliente);
+eSrchClientes BuscarCliente(sClientes *Clientela, str Email, sCliente& Cliente);
 
 //Eliminar de Asistencia
 eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente);

@@ -23,7 +23,7 @@ eLeerArchivoClases LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
 
     //vuelvo al principio del archivo
     miArchivo.seekg(ios::beg);
-
+    getline(miArchivo, primerLinea);
 
     sClase* aux=new sClase[longitud];
 
@@ -38,8 +38,8 @@ eLeerArchivoClases LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
         aux[i].idClase=stod(auxhora);
         i++;
     }
-    *misClases=aux;
     delete[] misClases;
+    *misClases=aux;
 
     return ExitoLeerArchivoClases;
 }
@@ -62,8 +62,8 @@ eLeerArchivoClientes LeerArchivoClientes(ifstream &miArchivo, sClientes **misCli
         longitud++;
 
     //vuelvo al principio del archivo
-    miArchivo.seekg(ios::beg);
-
+    miArchivo.seekg(ios::beg);   
+    getline(miArchivo, primerLinea);
 
     sClientes* aux=new sClientes[longitud];
 
@@ -88,8 +88,8 @@ eLeerArchivoClientes LeerArchivoClientes(ifstream &miArchivo, sClientes **misCli
     }
     aux->CantClientes=longitud;
     aux->CantClientes=longitud;
-    *misClientes=aux;
     delete[] misClientes;
+    *misClientes=aux;
 
     return ExitoLeerArchivoClientes;
 }
@@ -101,9 +101,7 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
     str linea;
     unsigned int longitud=0;
     int i=0;
-    while(getline(miArchivo,linea))
-        longitud++;
-    miArchivo.seekg(ios::beg);
+
 
     Asistencia *aux =new  Asistencia [longitud];
     aux->cantClientesInscriptos=longitud;
@@ -114,14 +112,13 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
 
         Inscripcion *auxInscriptos = new Inscripcion[aux->cantInscriptos];
         for (uint i = 0; i < aux->cantInscriptos; i++) {
-            miArchivo.read((char *)auxInscriptos->idCurso, sizeof(uint));
-            miArchivo.read((char *)auxInscriptos->fechaInscripcion, sizeof(time_t));
+            miArchivo.read((char *)auxInscriptos[i], sizeof(Inscripcion));
         }
         aux[i].CursosInscriptos = auxInscriptos;
 
         i++;
     }
-
-    *misAsistencias=aux;
     delete[] misAsistencias;
+    *misAsistencias=aux;
+    return eLeerArchivoAsistencias::ExitoLeerArchivoAsistencias;
 }
