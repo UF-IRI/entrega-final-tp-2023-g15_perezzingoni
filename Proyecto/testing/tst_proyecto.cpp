@@ -6,7 +6,7 @@ TEST_CASE( "Agregar Cliente" ) {
     sClientes* MisClientes = new sClientes[1];
     REQUIRE(MisClientes != nullptr);
 
-    MisClientes->CantMaxima = 1;
+    MisClientes->CantMaxima = 0;
     MisClientes->CantClientes = 0;
     MisClientes->misClientes = new sCliente[MisClientes->CantMaxima];
 
