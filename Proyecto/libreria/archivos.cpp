@@ -112,7 +112,7 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
 
         Inscripcion *auxInscriptos = new Inscripcion[aux->cantInscriptos];
         for (uint i = 0; i < aux->cantInscriptos; i++) {
-            miArchivo.read((char *)auxInscriptos[i], sizeof(Inscripcion));
+            miArchivo.read((char *)auxInscriptos, sizeof(Inscripcion));
         }
         aux[i].CursosInscriptos = auxInscriptos;
 
