@@ -12,6 +12,9 @@ SOURCES += \
         sistemas1.cpp
 
 HEADERS += \
+        archivos.h \
+        clases.h \
+        clientes.h \
         libreria_global.h \
         summary1.h
 

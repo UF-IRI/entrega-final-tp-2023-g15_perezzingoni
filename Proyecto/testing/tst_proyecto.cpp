@@ -1,10 +1,10 @@
-#include <catch2/catch.hpp>
-#include "clientes.cpp"
+/*#include <catch2/catch.hpp>
+#include "summary1.h"
 
 TEST_CASE( "Proyecto" ) {
 
     SECTION ("Agregar cliente"){
-    /*        sClientes Clientela;
+        sClientes Clientela;
         Clientela.CantClientes=1;
         Clientela.CantMaxima=2;
         sCliente *Cliente = new sCliente[1];
@@ -30,10 +30,10 @@ TEST_CASE( "Proyecto" ) {
     sCliente Cliente1={1,".", ".", ".",".",".", 0 };
     sCliente Cliente2={2,".", ".", ".",".",".", 0 };
     sCliente Cliente3={3,".", ".", ".",".",".", 0 };
-    eAgrClientes verificar;
+    eAgrClientes verificar;gqq
 
     Clientela.misClientes[0]= Cliente1;
-*/
+
         sClientes Clientela;
         Clientela.CantClientes = 1;
         Clientela.CantMaxima = 1;
@@ -63,7 +63,7 @@ TEST_CASE( "Proyecto" ) {
     //
     delete[] misClientes;
     }
-
+*/
   /*  SECTION ("Modificar Cliente"){
     sClientes* MisClientes = new sClientes[3];
     REQUIRE(MisClientes != nullptr);
@@ -173,5 +173,6 @@ TEST_CASE( "Proyecto" ) {
     delete[] MisClientes->misClientes;
     delete MisClientes;
 }*/
-}
+
+
 
