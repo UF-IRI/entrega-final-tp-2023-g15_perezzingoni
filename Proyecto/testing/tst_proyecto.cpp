@@ -1,10 +1,10 @@
-/*#include <catch2/catch.hpp>
+#include <catch2/catch.hpp>
 #include "summary1.h"
 
 TEST_CASE( "Proyecto" ) {
 
     SECTION ("Agregar cliente"){
-        sClientes Clientela;
+        /*sClientes Clientela;
         Clientela.CantClientes=1;
         Clientela.CantMaxima=2;
         sCliente *Cliente = new sCliente[1];
@@ -18,8 +18,9 @@ TEST_CASE( "Proyecto" ) {
         Clientela.misClientes= Cliente;
      sCliente Cliente1 = {1,".", ".", ".",".",".", 0};
         eAgrClientes verificar;
-     sClientes Clientela;
 
+*/
+    sClientes Clientela;
     Clientela.CantClientes = 1;
     Clientela.CantMaxima = 1;
     sCliente* misClientes = new sCliente[Clientela.CantClientes];
@@ -30,22 +31,10 @@ TEST_CASE( "Proyecto" ) {
     sCliente Cliente1={1,".", ".", ".",".",".", 0 };
     sCliente Cliente2={2,".", ".", ".",".",".", 0 };
     sCliente Cliente3={3,".", ".", ".",".",".", 0 };
-    eAgrClientes verificar;gqq
+    eAgrClientes verificar;
 
     Clientela.misClientes[0]= Cliente1;
 
-        sClientes Clientela;
-        Clientela.CantClientes = 1;
-        Clientela.CantMaxima = 1;
-        sCliente* misClientes = new sCliente[Clientela.CantClientes];
-        Clientela.misClientes = misClientes;
-
-        REQUIRE(Clientela.misClientes != nullptr);
-
-        sCliente Cliente1={1,".", ".", ".",".",".", 0 };
-        sCliente Cliente2={2,".", ".", ".",".",".", 0 };
-        sCliente Cliente3={3,".", ".", ".",".",".", 0 };
-        eAgrClientes verificar;
 
         Clientela.misClientes[0]= Cliente1;
     //Agrego un cliente diferente que tendria que funcionar correctamente
@@ -63,8 +52,8 @@ TEST_CASE( "Proyecto" ) {
     //
     delete[] misClientes;
     }
-*/
-  /*  SECTION ("Modificar Cliente"){
+
+   SECTION ("Modificar Cliente"){
     sClientes* MisClientes = new sClientes[3];
     REQUIRE(MisClientes != nullptr);
 
@@ -156,12 +145,11 @@ TEST_CASE( "Proyecto" ) {
     MisClientes->misClientes[1]=Cliente2;
     MisClientes->misClientes[2]=Cliente3;
 
-    Asistencia* MisAsistencias=new Asistencia[1];
-    MisAsistencias->cantClientesInscriptos=1;
-    MisAsistencias->cantInscriptos=1;
-    MisAsistencias->idCliente= 1;
-    MisAsistencias->CursosInscriptos->fechaInscripcion=time(0);
-    MisAsistencias->CursosInscriptos->idCurso=2;
+    sAsistencias* MisAsistencias=new sAsistencias[1];
+    MisAsistencias->misAsistencias.cantInscriptos=1;
+    MisAsistencias->misAsistencias.idCliente= 1;
+    MisAsistencias->misAsistencias.CursosInscriptos->fechaInscripcion=time(0);
+    MisAsistencias->misAsistencias.CursosInscriptos->idCurso=2;
 
     eRmClientes verificar;
     verificar = RemoverCliente(MisClientes,Cliente1,MisAsistencias);
@@ -172,7 +160,7 @@ TEST_CASE( "Proyecto" ) {
 
     delete[] MisClientes->misClientes;
     delete MisClientes;
-}*/
-
+}
+}
 
 

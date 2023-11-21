@@ -25,7 +25,7 @@ typedef unsigned int uint;
     }; typedef struct Asistencia Asistencia;
 
     struct sAsistencias{
-        Asistencia misAsistencias;
+        Asistencia *misAsistencias;
         uint cantAsistencias;
     }; typedef struct sAsistencias sAsistencias;
 
@@ -50,10 +50,11 @@ typedef unsigned int uint;
 
 //CLASES
     struct Clase {
-        unsigned int idClase;
+        uint idClase;
         str nombre;
-        double hora;
-        unsigned int CupoDisponible, CupoMax;
+        float horario;
+        uint CupoDisponible;
+        uint CupoMax;
     }; typedef struct Clase sClase;
 
 
@@ -84,7 +85,7 @@ typedef unsigned int uint;
     eUpdClientes ActualizarCliente(sClientes *Clientela, sCliente ClienteActualizado, sCliente Cliente);
 
 //Eliminar cliente
-    eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, Asistencia *misInscriptos);
+    eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, sAsistencias *misInscriptos);
 
 //Buscar cliente
     eSrchClientes BuscarCliente(sClientes *Clientela, str Nombre, str Apellido, sCliente& Cliente);
@@ -108,8 +109,8 @@ typedef unsigned int uint;
 
 //Lectura de Archivos
     eLeerArchivoClases LeerArchivoClases (ifstream &miArchivo, sClase **misClases);
-    eLeerArchivoClientes LeerArchivoClientes (ifstream &miArchivo, sClientes **misClientes);
-    eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia **misAsistencias);
+    eLeerArchivoClientes LeerArchivoClientes (ifstream &miArchivo, sClientes &Clientela);
+    eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencias);
 
 
 

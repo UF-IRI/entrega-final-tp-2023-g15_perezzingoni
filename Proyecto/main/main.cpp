@@ -19,7 +19,7 @@ int main() {
         return -1;
     miArchivo1.close();
 
-    sClientes *misClientes;
+    sClientes Clientela;
     ifstream miArchivo2;
     miArchivo2.open("..\\..\\Proyecto\\Dataset TP\\iriClientesGYM.csv");
     if (!miArchivo2.is_open()){
@@ -27,20 +27,20 @@ int main() {
         return 1;
     }
     eLeerArchivoClientes lecturaCliente;
-    lecturaCliente = LeerArchivoClientes (miArchivo2, &misClientes);
+    lecturaCliente = LeerArchivoClientes (miArchivo2, Clientela);
     if(lecturaCliente ==ErrLeerArchivoClientes)
         return -1;
     miArchivo2.close();
 
 
-    Asistencia *misAsistencias;
+    sAsistencias Asistencias;
     ifstream infile("..\\..\\Proyecto\\Dataset TP\\asistencias_1697673600000.dat", ios::binary);
     if (!infile.is_open()) {
         cout << "Error opening binary file" << endl;
         return 1;
     }
-    eLeerArchivoAsistencias lecturaAsistencias;
-    lecturaAsistencias= LeerArchivoAsistencias(infile, &misAsistencias);
+    eLeerArchivoAsistencias verificar;
+    verificar= LeerArchivoAsistencias(infile, Asistencias);
     infile.close();
 
     //Apertura de Archivos para Escritura

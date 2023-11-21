@@ -1,5 +1,5 @@
 #include "summary1.h"
-/*
+
 // CLASES.CSV
             eLeerArchivoClases LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
                 if(!miArchivo.is_open()){
@@ -17,7 +17,7 @@
 
                 //cuento la cantidad de líneas
                 str linea;
-                unsigned int longitud=0;
+                unsigned int longitud=1;
                 int i=0;
                 while(getline(miArchivo,linea))
                     longitud++;
@@ -26,7 +26,7 @@
                 miArchivo.seekg(ios::beg);
                 getline(miArchivo, primerLinea);
 
-                sClase* aux=new sClase[longitud];
+                sClase* aux=new sClase[longitud-1];
 
                 while(getline(miArchivo, linea)){
                     stringstream ss (linea);
@@ -36,10 +36,10 @@
                     getline(ss,auxnombre, ',');
                     aux[i].nombre=auxnombre;
                     getline(ss,auxhora, ',');
-                    aux[i].idClase=stod(auxhora);
+                    aux[i].horario=stod(auxhora);
                     i++;
                 }
-                delete[] misClases;
+                delete[] *misClases;
                 *misClases=aux;
 
                 return ExitoLeerArchivoClases;
@@ -47,7 +47,7 @@
 
 
 //CLIENTES.CSV
-            eLeerArchivoClientes LeerArchivoClientes(ifstream &miArchivo, sClientes **misClientes){
+            eLeerArchivoClientes LeerArchivoClientes(ifstream &miArchivo, sClientes &Clientela){
                 if(!miArchivo.is_open()){
                     return ErrLeerArchivoClientes;
                 }
@@ -59,47 +59,47 @@
 
                 //cuento la cantidad de líneas
                 str linea;
-                unsigned int longitud=0;
+                unsigned int longitud=1;
                 int i=0;
                 while(getline(miArchivo,linea))
                     longitud++;
-
+                longitud--;
                 //vuelvo al principio del archivo
                 miArchivo.seekg(ios::beg);
                 getline(miArchivo, primerLinea);
 
-                sClientes* aux=new sClientes[longitud];
+                sCliente* aux=new sCliente[longitud];
 
                 while(getline(miArchivo, linea)){
                     stringstream ss(linea);
                     ss << linea;
                     getline(ss,auxidCliente, ',');
-                    aux[i].misClientes->idCliente=stoul(auxidCliente);
+                    aux[i].idCliente=stoul(auxidCliente);
                     getline(ss,auxnombre, ',');
-                    aux[i].misClientes->nombre=auxnombre;
+                    aux[i].nombre=auxnombre;
                     getline(ss,auxapellido, ',');
-                    aux[i].misClientes->apellido=auxapellido;
+                    aux[i].apellido=auxapellido;
                     getline(ss,auxemail, ',');
-                    aux[i].misClientes->email=auxemail;
+                    aux[i].email=auxemail;
                     getline(ss,auxtelefono, ',');
-                    aux[i].misClientes->telefono=auxtelefono;
+                    aux[i].telefono=auxtelefono;
                     getline(ss,auxfechaNac, ',');
-                    aux[i].misClientes->fechaNac=auxfechaNac;
+                    aux[i].fechaNac=auxfechaNac;
                     getline(ss,auxestado, ',');
-                    aux[i].misClientes->estado=stoi(auxestado);
+                    aux[i].estado=stoi(auxestado);
                     i++;
                 }
-                aux->CantClientes=longitud;
-                aux->CantClientes=longitud;
-                delete[] misClientes;
-                *misClientes=aux;
+                Clientela.CantClientes=longitud;
+                Clientela.CantMaxima=longitud;
+                delete[] Clientela.misClientes;
+                Clientela.misClientes=aux;
 
                 return ExitoLeerArchivoClientes;
             }
 
 
 //ASISTENCIAS.DAT
-            eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia **misAsistencias){
+            eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencias){
                 if (!miArchivo.is_open())
                     return eLeerArchivoAsistencias::ErrLeerArchivoAsistencias;
 
@@ -121,13 +121,13 @@
 
                     i++;
                 }
-                delete[] misAsistencias;
-                *misAsistencias=aux;
+                delete[] Asistencias.misAsistencias;
+                Asistencias.misAsistencias=aux;
                 return eLeerArchivoAsistencias::ExitoLeerArchivoAsistencias;
             }
 
 
-*/
+
             /*void inicializarCupos(sClase *misClases){
     //inicializa todos los cupos de las distintas clases y musculacion
     if(misClases->nombre=='Spinning'){
