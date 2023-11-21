@@ -1,7 +1,7 @@
 #ifndef CLIENTES_H
 #define CLIENTES_H
 #include "clases.h"
-#include "libreria.h"
+
 
 // strcturas
 struct sCliente {
@@ -46,7 +46,7 @@ enum eRmAsistencias {ErrRmAsistenciasNoExiste=-2, ErrRmAsistencias = -1, ExitoRm
 //Funciones
 
 // Agregar cliente
-eAgrClientes AgregarCliente(sClientes *Clientela, sCliente Cliente, u_int cantClientes);
+eAgrClientes AgregarCliente(sClientes *Clientela, sCliente Cliente);
 void resizeClientes(sClientes* miLista, u_int tam, u_int nuevoTam);
 
 //Modificar cliente
@@ -67,6 +67,6 @@ eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente)
 eAnClase AnotarseClase(sCliente Cliente, unsigned int idClase, Asistencia *misAsistencias, sClase *laClase);
 
 //Cancelar clase
-//eCanClase CancelarClase(sCliente Cliente, sClase _Clase, sAsistencias *misInscriptos, sClase *misClases);
+//eCanClase CancelarClase(sCliente Cliente, sClase _Clase, Asistencia *misInscriptos, sClase *misClases);
 
 #endif // CLIENTES_H

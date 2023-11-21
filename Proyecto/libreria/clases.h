@@ -1,7 +1,7 @@
 #ifndef CLASES_H
 #define CLASES_H
 #include "libreria.h"
-// structuras>
+// structuras
 
 struct Clase {
     unsigned int idClase;

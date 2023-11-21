@@ -1,10 +1,9 @@
-#include "clientes.h"
+#include "archivos.h"
 
 eAgrClientes AgregarCliente(sClientes *Clientela, sCliente Cliente){
     //condiciones de error
     if(Clientela->misClientes==nullptr)
         return eAgrClientes::ErrAgrEspacio;
-
 
     //si el cliente ya existe no lo agrego
     eSrchClientes verificar;
@@ -85,7 +84,7 @@ eSrchClientes BuscarCliente(sClientes *Clientela, str Email, sCliente& Cliente){
     return eSrchClientes::ErrSrchNoExite;
 }
 
-eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, Asistencia *misAsistencias){
+/*eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, Asistencia *misAsistencias){
     eRmAsistencias sacarAsistencias;
     if(Clientela->misClientes==nullptr)
         return eRmClientes::ErrRmCliente;
@@ -104,7 +103,7 @@ eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, Asistencia *m
     return eRmClientes::ErrRmClienteNoExiste;
 }
 
-/*eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente){
+eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente){
     if(misAsistencias==nullptr)
         return eRmAsistencias::ErrRmAsistencias;
     for(int i=0;i<misAsistencias->cantClientesInscriptos;i++){

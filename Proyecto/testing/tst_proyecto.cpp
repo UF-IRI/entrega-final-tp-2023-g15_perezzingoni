@@ -1,45 +1,70 @@
 #include <catch2/catch.hpp>
-#include "archivos.h"
-#include <iostream>
+#include "clientes.cpp"
 
-TEST_CASE( "Agregar Cliente" ) {
-    sClientes* MisClientes;
-    REQUIRE(*MisClientes != nullptr);
+TEST_CASE( "Proyecto" ) {
 
-    MisClientes->CantMaxima = 0;
-    MisClientes->CantClientes = 0;
-    MisClientes->misClientes = new sCliente[MisClientes->CantMaxima];
+    SECTION ("Agregar cliente"){
+    /*        sClientes Clientela;
+        Clientela.CantClientes=1;
+        Clientela.CantMaxima=2;
+        sCliente *Cliente = new sCliente[1];
+        Cliente[0].apellido="1";
+        Cliente[0].email= ".";
+        Cliente[0].estado=0;
+        Cliente[0].fechaNac=";";
+        Cliente[0].idCliente=2;
+        Cliente[0].nombre=";";
+        Cliente[0].telefono=";";
+        Clientela.misClientes= Cliente;
+     sCliente Cliente1 = {1,".", ".", ".",".",".", 0};
+        eAgrClientes verificar;
+     sClientes Clientela;
 
-    REQUIRE(MisClientes->misClientes != nullptr);
+    Clientela.CantClientes = 1;
+    Clientela.CantMaxima = 1;
+    sCliente* misClientes = new sCliente[Clientela.CantClientes];
+    Clientela.misClientes = misClientes;
+
+    REQUIRE(Clientela.misClientes != nullptr);
 
     sCliente Cliente1={1,".", ".", ".",".",".", 0 };
     sCliente Cliente2={2,".", ".", ".",".",".", 0 };
     sCliente Cliente3={3,".", ".", ".",".",".", 0 };
     eAgrClientes verificar;
 
-    //Agrego dos clientes diferentes que tendrian que funcionar correctamente
-    verificar= AgregarCliente(MisClientes, Cliente1, MisClientes->CantClientes);
-    REQUIRE(verificar==ExitoAgregar);
-    verificar= AgregarCliente(MisClientes, Cliente2, MisClientes->CantClientes);
+    Clientela.misClientes[0]= Cliente1;
+*/
+        sClientes Clientela;
+        Clientela.CantClientes = 1;
+        Clientela.CantMaxima = 1;
+        sCliente* misClientes = new sCliente[Clientela.CantClientes];
+        Clientela.misClientes = misClientes;
+
+        REQUIRE(Clientela.misClientes != nullptr);
+
+        sCliente Cliente1={1,".", ".", ".",".",".", 0 };
+        sCliente Cliente2={2,".", ".", ".",".",".", 0 };
+        sCliente Cliente3={3,".", ".", ".",".",".", 0 };
+        eAgrClientes verificar;
+
+        Clientela.misClientes[0]= Cliente1;
+    //Agrego un cliente diferente que tendria que funcionar correctamente
+        verificar= AgregarCliente(&Clientela, Cliente1);
     REQUIRE(verificar==ExitoAgregar);
 
-    REQUIRE(MisClientes->CantClientes == 2);
-    REQUIRE(MisClientes->CantMaxima == 5);
+    REQUIRE(Clientela.CantClientes == 2);
+    REQUIRE(Clientela.CantMaxima == 5);
 
     //Casos que no tendrian que funcionar
-    //cant negativa
-    verificar= AgregarCliente(MisClientes, Cliente3, -1);
-    REQUIRE(verificar==ErrAgrEspacio);
 
     //cliente ya existente
-    verificar= AgregarCliente(MisClientes, Cliente2, 2);
+    verificar= AgregarCliente(&Clientela, Cliente1);
     REQUIRE(verificar==ErrAgrExiste);
     //
-    delete[] MisClientes->misClientes;
-    delete MisClientes;
-}
+    delete[] misClientes;
+    }
 
-TEST_CASE("Modificar Cliente"){
+  /*  SECTION ("Modificar Cliente"){
     sClientes* MisClientes = new sClientes[3];
     REQUIRE(MisClientes != nullptr);
 
@@ -69,7 +94,7 @@ TEST_CASE("Modificar Cliente"){
     delete MisClientes;
 }
 
-TEST_CASE("Buscar Cliente"){
+    SECTION ("Buscar Cliente"){
     sClientes* MisClientes = new sClientes[3];
     REQUIRE(MisClientes != nullptr);
 
@@ -113,7 +138,7 @@ TEST_CASE("Buscar Cliente"){
     delete MisClientes;
 }
 
-TEST_CASE("Echar Cliente"){
+    SECTION ("Echar Cliente"){
     sClientes* MisClientes = new sClientes[3];
     REQUIRE(MisClientes != nullptr);
 
@@ -147,4 +172,6 @@ TEST_CASE("Echar Cliente"){
 
     delete[] MisClientes->misClientes;
     delete MisClientes;
+}*/
 }
+

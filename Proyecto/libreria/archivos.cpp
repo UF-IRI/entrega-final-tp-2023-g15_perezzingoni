@@ -99,12 +99,10 @@ eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, Asistencia *
         return eLeerArchivoAsistencias::ErrLeerArchivoAsistencias;
 
     str linea;
-    unsigned int longitud=0;
+    unsigned int longitud=1;
     int i=0;
 
-
     Asistencia *aux =new  Asistencia [longitud];
-    aux->cantClientesInscriptos=longitud;
 
     while (!miArchivo.eof()) {
         miArchivo.read((char *)&aux->idCliente, sizeof(uint));

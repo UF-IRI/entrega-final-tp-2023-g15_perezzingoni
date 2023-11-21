@@ -40,8 +40,8 @@ int main() {
         cout << "Error opening binary file" << endl;
         return 1;
     }
-    eLeerArchivoAsistencias lecturaAsistencias;
-    lecturaAsistencias= LeerArchivoAsistencias(infile, &misAsistencias);
+    //eLeerArchivoAsistencias lecturaAsistencias;
+    //lecturaAsistencias= LeerArchivoAsistencias(infile, &misAsistencias);
     infile.close();
 
     //Apertura de Archivos para Escritura
