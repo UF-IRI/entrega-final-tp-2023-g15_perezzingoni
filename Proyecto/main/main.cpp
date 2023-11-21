@@ -41,6 +41,8 @@ int main() {
     }
     eLeerArchivoAsistencias verificar;
     verificar= LeerArchivoAsistencias(infile, Asistencias);
+    if(verificar==ErrLeerArchivoAsistencias)
+        return -1;
     infile.close();
 
     //Apertura de Archivos para Escritura
