@@ -1,5 +1,7 @@
-#ifndef SUMMARY_H
-#define SUMMARY_H
+#ifndef ENCABEZADOS_H
+#define ENCABEZADOS_H
+
+#include <string>
 #include <string>
 #include <ctime>
 #include <cmath>
@@ -7,111 +9,115 @@
 #include <sstream>
 
 typedef std::string str;
+typedef unsigned int u_int;
+
+typedef std::string str;
 using namespace std;
 typedef unsigned int uint;
 
 
-    //***ESTRUCTURAS***
+//***ESTRUCTURAS***
 
 //ASISTENCIAS
-    struct Inscripcion{
-        uint idCurso;
-        time_t fechaInscripcion;
-    }; typedef struct Inscripcion Inscripcion;
+struct Inscripcion{
+    uint idCurso;
+    time_t fechaInscripcion;
+}; typedef struct Inscripcion Inscripcion;
 
-    struct Asistencia{
-        uint idCliente, cantInscriptos;
-        Inscripcion* CursosInscriptos;
-    }; typedef struct Asistencia Asistencia;
+struct Asistencia{
+    uint idCliente, cantInscriptos;
+    Inscripcion* CursosInscriptos;
+}; typedef struct Asistencia Asistencia;
 
-    struct sAsistencias{
-        Asistencia *misAsistencias;
-        uint cantAsistencias;
-    }; typedef struct sAsistencias sAsistencias;
+struct sAsistencias{
+    Asistencia *misAsistencias;
+    uint cantAsistencias;
+    uint cantMax;
+}; typedef struct sAsistencias sAsistencias;
 
 
 //CLIENTES
-    struct sCliente {
-        unsigned int idCliente;
-        str nombre;
-        str apellido;
-        str email;
-        str telefono;
-        str fechaNac;
-        int estado;
-    };typedef struct sCliente sCliente;
+struct sCliente {
+    unsigned int idCliente;
+    str nombre;
+    str apellido;
+    str email;
+    str telefono;
+    str fechaNac;
+    int estado;
+};typedef struct sCliente sCliente;
 
-    struct sClientes{
-        sCliente *misClientes;
-        int CantClientes;
-        int CantMaxima;
-    };typedef struct sClientes sClientes;
+struct sClientes{
+    sCliente *misClientes;
+    int CantClientes;
+    int CantMaxima;
+};typedef struct sClientes sClientes;
 
 
 //CLASES
-    struct Clase {
-        uint idClase;
-        str nombre;
-        float horario;
-        uint CupoDisponible;
-        uint CupoMax;
-    }; typedef struct Clase sClase;
+struct Clase {
+    uint idClase;
+    str nombre;
+    float horario;
+    uint CupoDisponible;
+    uint CupoMax;
+}; typedef struct Clase sClase;
 
 
-    //***ENUMS***
-//ARCHIVOS
-    enum eLeerArchivoClases {ErrLeerArchivoClases = -1, ExitoLeerArchivoClases = 1};
-    enum eLeerArchivoClientes {ErrLeerArchivoClientes = -1, ExitoLeerArchivoClientes = 1};
-    enum eLeerArchivoAsistencias {ErrLeerArchivoAsistencias = -1, ExitoLeerArchivoAsistencias = 1};
+//***ENUMS***
 
-//ASISTENCIAS
-    enum eAgrClientes  { ErrAgrExiste= -2, ErrAgrEspacio = -1,  ExitoAgregar = 1 };
-    enum eUpdClientes  { ErrUpdClienteNoExiste= -2, ErrUpdCliente = -1,  ExitoUpdCliente = 1 };
-    enum eRmClientes   { ErrRmClienteNoExiste = -2, ErrRmCliente = -1, ExitoRmCliente = 1 };
-    enum eSrchClientes { ErrSrchNoExite = -2,ErrSrchCliente = -1, ExitoSrchCliente = 1 };
-    typedef enum { ErrAnClase = -1, ExitoAnClase = 1} eAnClase;
-    typedef enum { ErrCanClase = -1, ExitoCanClase = 1} eCanClase;
-    enum eRmAsistencias { ErrRmAsistenciasNoExiste=-2, ErrRmAsistencias = -1, ExitoRmAsistencias = 1};
-    enum eSrchClase { ErrSrchClase = -1, ExitoSrchClase = 1 };
-    enum eCupos{ ErrCupos=-1, ExitoCupos=1};
+enum eResultados {Error=-4 ,ErrNoExiste=-3, ErrExiste=-2, ErrEspacio=-1, Exito=1};
 
 
-    //***FUNCIONES***
+//***FUNCIONES***
 // Agregar cliente
-    eAgrClientes AgregarCliente(sClientes *Clientela, sCliente Cliente);
-    void resizeClientes(sClientes* miLista, uint tam, uint nuevoTam);
-
-//Modificar cliente
-    eUpdClientes ActualizarCliente(sClientes *Clientela, sCliente ClienteActualizado, sCliente Cliente);
-
-//Eliminar cliente
-    eRmClientes RemoverCliente(sClientes *Clientela, sCliente Cliente, sAsistencias *misInscriptos);
+eResultados AgregarCliente(sClientes& Clientela, sCliente Cliente);
+eResultados resizeClientes(sClientes& Clientela, uint tam, uint nuevoTam);
 
 //Buscar cliente
-    eSrchClientes BuscarCliente(sClientes *Clientela, str Nombre, str Apellido, sCliente& Cliente);
-    eSrchClientes BuscarCliente(sClientes *Clientela, unsigned int idCliente, sCliente& Cliente);
-    eSrchClientes BuscarCliente(sClientes *Clientela, str Email, sCliente& Cliente);
+eResultados BuscarCliente(sClientes &Clientela, str Nombre, str Apellido, sCliente& Cliente);
+eResultados BuscarCliente(sClientes &Clientela, uint idCliente, sCliente& Cliente);
+eResultados BuscarCliente(sClientes &Clientela, str Email, sCliente& Cliente);
+
+//Modificar cliente
+eResultados ActualizarCliente(sClientes &Clientela, sCliente ClienteActualizado, sCliente Cliente);
+
+//Eliminar cliente
+eResultados RemoverCliente(sClientes &Clientela, sCliente Cliente, sAsistencias *misInscriptos);
 
 //Eliminar de Asistencia
-    eRmAsistencias EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente);
+eResultados EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente);
 
 //Anotarse a clase
-    eAnClase AnotarseClase(sCliente Cliente, unsigned int idClase, Asistencia *misAsistencias, sClase *laClase);
+eResultados AnotarseClase(sCliente Cliente, unsigned int idClase, Asistencia *misAsistencias, sClase *laClase);
 
 //Cancelar clase
-    eCanClase CancelarClase(sCliente Cliente, sClase _Clase, Asistencia *misInscriptos, sClase *misClases);
+eResultados CancelarClase(sCliente Cliente, sClase _Clase, Asistencia &misInscriptos, sClase *misClases);
+
+//Modificar cupos (sumar o restar)
+eResultados ModificarCupos(sClase *misClases, int cambio, uint idClase);
 
 //Buscar clase
-    sClase BuscarClase(sClase *misClases, str Nombre, double Hora);
-    sClase BuscarClase(sClase *misClases, uint idClase);
-
-    void inicializarCupos(sClase *misClases);
+sClase BuscarClase(sClase *misClases, str Nombre, double Hora);
+sClase BuscarClase(sClase *misClases, uint idClase);
 
 //Lectura de Archivos
-    eLeerArchivoClases LeerArchivoClases (ifstream &miArchivo, sClase **misClases);
-    eLeerArchivoClientes LeerArchivoClientes (ifstream &miArchivo, sClientes &Clientela);
-    eLeerArchivoAsistencias LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencias);
+eResultados LeerArchivoClases (ifstream &miArchivo, sClase **misClases);
+eResultados LeerArchivoClientes (ifstream &miArchivo, sClientes &Clientela);
+eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencias);
+void resizeAsistencias(sAsistencias &misAsistencias, uint tam, uint nuevoTam);
+void filtrosBinario(sAsistencias &Asistencias);
+
+//Cupos
+
+
+//Filtros del binario
 
 
 
-#endif // SUMMARY_H
+//Escritura de Archivos
+
+
+
+
+#endif // ENCABEZADOS_H
