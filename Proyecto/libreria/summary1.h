@@ -110,5 +110,8 @@ void inicializarCuposConAsist(sClase *misClases, sAsistencias misAsistencias);
 //Escritura de Archivos
 eResultados EscribirAsistencias(sAsistencias misAsistencias);
 
+//Menú
+void menu(int variable, sClientes &Clientela, sAsistencias &Asistidos, sClase **misClases);
+
 
 #endif // ENCABEZADOS_H

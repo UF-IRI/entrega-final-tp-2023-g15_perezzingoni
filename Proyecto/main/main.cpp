@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-
+    /*
     //Apertura de Archivos para Lectura
     sClase *misClases;
     ifstream miArchivo1("iriClasesGYM.csv");
@@ -32,21 +32,31 @@ int main() {
         return -1;
     miArchivo2.close();
 
-
     sAsistencias Asistencias;
     ifstream infile("asistencias_1697673600000.dat", ios::binary);
     if (!infile.is_open()) {
         cout << "Error opening binary file" << endl;
         return 1;
     }
-    eResultados verificar;
-    verificar= LeerArchivoAsistencias(infile, Asistencias);
-    if(verificar==ErrEspacio)
+    eResultados lecturaAsistencias;
+    lecturaAsistencias= LeerArchivoAsistencias(infile, Asistencias);
+    if(lecturaAsistencias==ErrEspacio)
         return -1;
     infile.close();
+*/
+    sClientes Clientela;
+    sClase *misClases;
+    sAsistencias Asistencias;
+    int variable=0;
+    while(variable!=5){
+        cout<< "Ingrese (con un número) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
+        cout<< "3. Reservar una clase" << endl << "4. Desanotarde de una clase" << endl << "5. Finlaizar" << endl;
+        cin>>variable;
+        if(variable < 5)
+        menu(variable, Clientela, Asistencias, &misClases);
+    }
 
     EscribirAsistencias(Asistencias);
-
 
     return 0;
 }

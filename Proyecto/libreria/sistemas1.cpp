@@ -390,3 +390,7 @@ if (archibinwr.is_open()) {
 archibinwr.close();
 return eResultados::Exito;
 }
+
+void menu(int variable, sClientes &Clientela, sAsistencias &Asistidos, sClase **misClases){
+
+}
