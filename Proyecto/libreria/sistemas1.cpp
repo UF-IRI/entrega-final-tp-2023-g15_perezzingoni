@@ -1,5 +1,4 @@
 #include "summary1.h"
-
 eResultados AgregarCliente(sClientes &Clientela, sCliente Cliente){
     if(Clientela.misClientes==nullptr)
         return eResultados::ErrEspacio;
@@ -171,6 +170,7 @@ eResultados LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
         i++;
     }
 
+    inicializarCupos(aux);
 
     return eResultados::Exito;
 }
@@ -249,12 +249,10 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
         resizeAsistencias(Asistencias,longitud,longitud+1);
         longitud++;
         i++;
-
-
     }
     Asistencias.cantAsistencias=longitud;
     Asistencias.cantMax=longitud;
-    filtrosBinario(Asistencias);
+    RepetidosAsist(Asistencias);
 
     return eResultados::Exito;
 }
@@ -274,7 +272,7 @@ void resizeAsistencias(sAsistencias &misAsistencias, uint tam, uint nuevoTam){
     return;
 }
 
-void filtrosBinario(sAsistencias &Asistencias){
+void RepetidosAsist(sAsistencias &Asistencias){
     for (uint i=0;i<Asistencias.cantAsistencias;i++){
         for(uint j=0; j<Asistencias.misAsistencias[i].cantInscriptos;j++){
             for(uint k=0;k<Asistencias.misAsistencias[i].cantInscriptos;k++){
@@ -289,36 +287,91 @@ void filtrosBinario(sAsistencias &Asistencias){
     }
 }
 
-/*void inicializarCupos(sClase *misClases){
-    //inicializa todos los cupos de las distintas clases y musculacion
-    if(misClases->nombre=='Spinning'){
-        misClases->CupoDisponible=45;
-        misClases->CupoMax=45;
-    }
-    if(misClases->nombre=='Yoga'){
-        misClases->CupoDisponible=25;
-        misClases->CupoMax=25;
-    }
-    if(misClases->nombre=='Pilates'){
-        misClases->CupoDisponible=15;
-        misClases->CupoMax=15;
-    }
-    if(misClases->nombre=='Stretching'){
-        misClases->CupoDisponible=40;
-        misClases->CupoMax=40;
-    }
-    if(misClases->nombre=='Zumba'){
-        misClases->CupoDisponible=50;
-        misClases->CupoMax=50;
-    }
-    if(misClases->nombre=='Boxeo'){
-        misClases->CupoDisponible=30;
-        misClases->CupoMax=30;
-    }
-    if(misClases->nombre=='Musculacion'){
-        misClases->CupoDisponible=30;
-        misClases->CupoMax=30;
+void inicializarCuposConAsist(sClase *misClases, sAsistencias misAsistencias){
+    for(uint i=0;i<misAsistencias.cantAsistencias;i++){
+        for(uint j=0;j<misAsistencias.misAsistencias[i].cantInscriptos;j++){
+            ModificarCupos(misClases,-1,misAsistencias.misAsistencias[i].CursosInscriptos[j].idCurso);
+        }
     }
 }
-*/
 
+void inicializarCupos(sClase *misClases){
+    //inicializa todos los cupos de las distintas clases y musculacion
+    for(int i=0;i<60;i++){
+        if(misClases[i].nombre=="Spinning"){
+            misClases->CupoDisponible=45;
+            misClases->CupoMax=45;
+        }
+        if(misClases[i].nombre=="Yoga"){
+            misClases->CupoDisponible=25;
+            misClases->CupoMax=25;
+        }
+        if(misClases[i].nombre=="Pilates"){
+            misClases->CupoDisponible=15;
+            misClases->CupoMax=15;
+        }
+        if(misClases[i].nombre=="Stretching"){
+            misClases->CupoDisponible=40;
+            misClases->CupoMax=40;
+        }
+        if(misClases[i].nombre=="Zumba"){
+            misClases->CupoDisponible=50;
+            misClases->CupoMax=50;
+        }
+        if(misClases[i].nombre=="Boxeo"){
+            misClases->CupoDisponible=30;
+            misClases->CupoMax=30;
+        }
+        if(misClases[i].nombre=="Musculacion"){
+            misClases->CupoDisponible=30;
+            misClases->CupoMax=30;
+        }
+    }
+}
+
+eResultados AnotarseClase(sCliente Cliente, uint idClase, sAsistencias &misAsistidos, sClase *misClases){
+    if(misClases==nullptr)
+        return eResultados::ErrEspacio;
+
+    eResultados evitar;
+    for(int i=0 ; i<60 ; i++){
+        if(misClases[i].idClase==idClase){
+            if(misClases[i].CupoDisponible==0)
+                return eResultados::ErrorNoHayCupos;
+            else{
+                evitar= AgregarAsistencia(misAsistidos,Cliente.idCliente,idClase);
+                if(evitar==Exito){
+                    misClases[i].CupoDisponible--;
+                    return eResultados::Exito;
+                }else
+                    return eResultados::ErrExiste;
+            }
+        }
+    }
+    return eResultados::ErrNoExiste;
+
+}
+
+eResultados AgregarAsistencia(sAsistencias &misAsistidos,uint idCliente,uint idClase){
+    for (uint i=0;i<misAsistidos.cantAsistencias;i++){
+        if(misAsistidos.misAsistencias[i].idCliente==idCliente){
+            for(uint j = 0;j<misAsistidos.misAsistencias[i].cantInscriptos;j++){
+                if(misAsistidos.misAsistencias[i].CursosInscriptos[j].idCurso==idClase){
+                    return eResultados::ErrExiste;
+                }
+                misAsistidos.misAsistencias[i].cantInscriptos++;
+                Inscripcion* aux=new Inscripcion[misAsistidos.misAsistencias[i].cantInscriptos];
+                uint k;
+                for (k=0; k<misAsistidos.misAsistencias[i].cantInscriptos-1;k++)
+                    aux[k]=misAsistidos.misAsistencias[i].CursosInscriptos[k];
+                aux[k].idCurso=idClase;
+                aux[k].fechaInscripcion=time(0);
+                delete[] misAsistidos.misAsistencias[i].CursosInscriptos;
+                misAsistidos.misAsistencias[i].CursosInscriptos=aux;
+                return eResultados::Exito;
+            }
+
+        }
+    }
+    return eResultados::ErrNoExiste;
+}

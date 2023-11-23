@@ -66,7 +66,7 @@ struct Clase {
 
 //***ENUMS***
 
-enum eResultados {Error=-4 ,ErrNoExiste=-3, ErrExiste=-2, ErrEspacio=-1, Exito=1};
+enum eResultados {ErrorNoHayCupos=-5 ,Error=-4 ,ErrNoExiste=-3, ErrExiste=-2, ErrEspacio=-1, Exito=1};
 
 
 //***FUNCIONES***
@@ -82,14 +82,9 @@ eResultados BuscarCliente(sClientes &Clientela, str Email, sCliente& Cliente);
 //Modificar cliente
 eResultados ActualizarCliente(sClientes &Clientela, sCliente ClienteActualizado, sCliente Cliente);
 
-//Eliminar cliente
-eResultados RemoverCliente(sClientes &Clientela, sCliente Cliente, sAsistencias *misInscriptos);
-
-//Eliminar de Asistencia
-eResultados EliminarAsistencias(Asistencia *misAsistencias, sCliente Cliente);
-
 //Anotarse a clase
-eResultados AnotarseClase(sCliente Cliente, unsigned int idClase, Asistencia *misAsistencias, sClase *laClase);
+eResultados AnotarseClase(sCliente Cliente, uint idClase, sAsistencias &misAsistidos, sClase *misClase);
+eResultados AgregarAsistencia(sAsistencias &misAsistidos, uint idCliente, uint idClase);
 
 //Cancelar clase
 eResultados CancelarClase(sCliente Cliente, sClase _Clase, Asistencia &misInscriptos, sClase *misClases);
@@ -106,14 +101,11 @@ eResultados LeerArchivoClases (ifstream &miArchivo, sClase **misClases);
 eResultados LeerArchivoClientes (ifstream &miArchivo, sClientes &Clientela);
 eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencias);
 void resizeAsistencias(sAsistencias &misAsistencias, uint tam, uint nuevoTam);
-void filtrosBinario(sAsistencias &Asistencias);
+void RepetidosAsist(sAsistencias &Asistencias);
 
 //Cupos
-
-
-//Filtros del binario
-
-
+void inicializarCupos (sClase* misClases);
+void inicializarCuposConAsist(sClase *misClases, sAsistencias misAsistencias);
 
 //Escritura de Archivos
 
