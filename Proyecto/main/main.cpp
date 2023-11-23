@@ -47,16 +47,43 @@ int main() {
     sClientes Clientela;
     sClase *misClases;
     sAsistencias Asistencias;
+
     int variable=0;
     while(variable!=5){
         cout<< "Ingrese (con un número) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
         cout<< "3. Reservar una clase" << endl << "4. Desanotarde de una clase" << endl << "5. Finlaizar" << endl;
         cin>>variable;
-        if(variable < 5)
-        menu(variable, Clientela, Asistencias, &misClases);
+        if(variable < 5){
+            switch(variable){
+            case 1:
+                sCliente nuevo;
+                cout<<"Ingrese su nombre";
+                cin>>nuevo.nombre;
+                cout<<"Ingrese su apellido";
+                cin>>nuevo.apellido;
+                cout<<"Ingrese su email";
+                cin>>nuevo.email;
+                cout<<"Ingrese su telefono";
+                cin>>nuevo.telefono;
+                cout<<"Ingrese su fecha de nacimiento";
+                cin>>nuevo.fechaNac;
+                nuevo.idCliente=Clientela.CantClientes+1;
+                nuevo.estado=0;
+                eResultados verificar;
+                verificar= AgregarCliente(Clientela, nuevo);
+                if(verificar==Exito)
+                    cout<< "La operacion se realizó correctamente"<< endl;
+                        else {
+                            if(verificar==ErrExiste)
+                            cout<<"El cliente ya exite"<<endl;
+            case 2:
+            case 3:
+            case 4:
+            }
+        }
     }
 
-    EscribirAsistencias(Asistencias);
+//    EscribirAsistencias(Asistencias);
 
     return 0;
 }

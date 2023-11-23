@@ -4,7 +4,7 @@ eResultados AgregarCliente(sClientes &Clientela, sCliente Cliente){
         return eResultados::ErrEspacio;
 
     eResultados verificar;
-    verificar=BuscarCliente(Clientela,Cliente.idCliente,Cliente);
+    verificar=BuscarCliente(Clientela,Cliente.nombre,Cliente.apellido,Cliente);
     if(verificar!=Exito)
         return eResultados::ErrExiste;
 
@@ -389,8 +389,4 @@ if (archibinwr.is_open()) {
 }
 archibinwr.close();
 return eResultados::Exito;
-}
-
-void menu(int variable, sClientes &Clientela, sAsistencias &Asistidos, sClase **misClases){
-
 }
