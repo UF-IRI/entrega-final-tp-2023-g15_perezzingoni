@@ -12,7 +12,7 @@ TEST_CASE("Leer archivos")
         sClientes Clientela;
         Clientela.CantClientes=0;
         Clientela.CantMaxima=0;
-        *Clientela.misClientes=*Clientes;
+        Clientela.misClientes=Clientes;
 
         ClientePrueba.idCliente = 206;
         ClientePrueba.apellido = "Torres";
@@ -169,7 +169,7 @@ TEST_CASE("Funciones Importantes"){
         eResultados verificar;
 
         //BUSCAR CLASE EXISTENTE
-        verificar=BuscarClase(misClases,"Yoga",9,Clase);
+        verificar=BuscarClase(misClases,"Yoga",9,Clase, 3);
         REQUIRE(verificar==Exito);
         CHECK(Clase.idClase==misClases[1].idClase);
         CHECK(Clase.horario==misClases[1].horario);
@@ -178,7 +178,7 @@ TEST_CASE("Funciones Importantes"){
         CHECK(Clase.CupoMax==misClases[1].CupoMax);
 
         //BUSCAR CLASE NO EXISTENTE
-        verificar=BuscarClase(misClases,0,Clase);
+        verificar=BuscarClase(misClases,0,Clase, 3);
         REQUIRE(verificar==ErrNoExiste);
         delete[] misClases;
 

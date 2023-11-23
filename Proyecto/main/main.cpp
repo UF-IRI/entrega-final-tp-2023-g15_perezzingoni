@@ -120,7 +120,7 @@ int main() {
             IdClase= rand() % 60 + 1;
             eResultados verSiClase, verSiCupos;
             sClase Clase;
-            verSiClase=BuscarClase(misClases,IdClase,Clase);
+            verSiClase=BuscarClase(misClases,IdClase,Clase,60);
             if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente con otro"<<endl;
             else {
@@ -148,7 +148,7 @@ int main() {
             IdClase= rand() % 60 + 1;
             eResultados verSiClase, verificar;
             sClase Clase;
-            verSiClase=BuscarClase(misClases,IdClase,Clase);
+            verSiClase=BuscarClase(misClases,IdClase,Clase,60);
             if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente nuevamente"<<endl;
             else {
@@ -378,7 +378,7 @@ int main() {
                         cin>>hora;
             eResultados verSiClase, verSiCupos;
             sClase Clase;
-            verSiClase=BuscarClase(misClases,deporte,hora,Clase);
+            verSiClase=BuscarClase(misClases,deporte,hora,Clase, 60);
             if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente con otro"<<endl;
             else {
@@ -434,7 +434,7 @@ int main() {
                         cin>>hora;
             eResultados verSiClase, verificar;
             sClase Clase;
-            verSiClase=BuscarClase(misClases,deporte,hora,Clase);
+            verSiClase=BuscarClase(misClases,deporte,hora,Clase, 60);
             if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente nuevamente"<<endl;
             else {
@@ -536,7 +536,7 @@ int main() {
                 IdClase= rand() % 60 + 1;
                 eResultados verSiClase, verSiCupos;
                 sClase Clase;
-                verSiClase=BuscarClase(misClases,IdClase,Clase);
+                verSiClase=BuscarClase(misClases,IdClase,Clase,60);
                 if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente con otro"<<endl;
                 else {
@@ -564,7 +564,7 @@ int main() {
                 IdClase= rand() % 60 + 1;
                 eResultados verSiClase, verificar;
                 sClase Clase;
-                verSiClase=BuscarClase(misClases,IdClase,Clase);
+                verSiClase=BuscarClase(misClases,IdClase,Clase,60);
                 if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente nuevamente"<<endl;
                 else {
