@@ -93,8 +93,8 @@ eResultados CancelarClase(sCliente Cliente, sClase _Clase, Asistencia &misInscri
 eResultados ModificarCupos(sClase *misClases, int cambio, uint idClase);
 
 //Buscar clase
-sClase BuscarClase(sClase *misClases, str Nombre, double Hora);
-sClase BuscarClase(sClase *misClases, uint idClase);
+eResultados BuscarClase(sClase *misClases, str Nombre, double Hora, sClase &Clase);
+eResultados BuscarClase(sClase *misClases, uint idClase, sClase &Clase);
 
 //Lectura de Archivos
 eResultados LeerArchivoClases (ifstream &miArchivo, sClase **misClases);

@@ -50,10 +50,10 @@ int main() {
 
     int variable=0;
     while(variable!=5){
-        cout<< "Ingrese (con un número) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
-        cout<< "3. Reservar una clase" << endl << "4. Desanotarde de una clase" << endl << "5. Finlaizar" << endl;
+        cout<< "Ingrese (con un numero) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
+        cout<< "3. Reservar una Clase" << endl << "4. Desanotarde de una Clase" << endl << "5. Finlaizar" << endl;
         cin>>variable;
-        if(variable==1){//Agregar nuevo cliente
+        if(variable==1){//Agregar nuevo Cliente
             sCliente nuevo;
             cout<<"Ingrese su nombre";
             cin>>nuevo.nombre;
@@ -78,7 +78,7 @@ int main() {
                     }
         }
 
-        if(variable==2) {//Modificar un cliente
+        if(variable==2) {//Modificar un Cliente
             int queQuiere;
             sCliente Cliente;
             cout<< "¿Cómo quiere buscar al cliente para modificarlo? (Ingrese un numero)"<<endl;
@@ -127,7 +127,7 @@ int main() {
                 cout<<"Hubo un problema en el sistema. Disculpe las molestias. Intente nuevamente"<<endl;
         }
 
-        if(variable==3){
+        if(variable==3){//Reservar una Clase
 
         }
     }

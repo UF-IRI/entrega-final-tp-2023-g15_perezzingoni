@@ -390,3 +390,23 @@ if (archibinwr.is_open()) {
 archibinwr.close();
 return eResultados::Exito;
 }
+
+eResultados BuscarClase(sClase *misClases, str Nombre, double Hora, sClase &Clase){
+for(int i=0;i<60;i++){
+    if(misClases[i].nombre==Nombre && misClases[i].horario==Hora){
+        Clase=misClases[i];
+        return eResultados::Exito;
+    }
+}
+return eResultados::ErrNoExiste;
+}
+
+eResultados BuscarClase(sClase *misClases, uint idClase, sClase &Clase){
+for(int i=0;i<60;i++){
+    if(misClases[i].idClase==idClase){
+        Clase=misClases[i];
+        return eResultados::Exito;
+    }
+}
+return eResultados::ErrNoExiste;
+}
