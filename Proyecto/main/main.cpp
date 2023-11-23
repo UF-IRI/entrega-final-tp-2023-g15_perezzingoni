@@ -128,7 +128,52 @@ int main() {
         }
 
         if(variable==3){//Reservar una Clase
-
+                int queQuiere;
+                sCliente Cliente;
+                cout<< "¿Cómo quiere buscar al cliente para modificarlo? (Ingrese un numero)"<<endl;
+                        cout<< "1. Nombre y Apellido" <<endl << "2.El Id del cliente"<<endl <<"3.Email"<<endl;
+                cin>> queQuiere;
+                if(queQuiere==1){
+                cout<<"Ingrese el nombre"<<endl;
+                cin>>Cliente.nombre;
+                cout<<"Ingrese el apellido"<<endl;
+                cin>>Cliente.apellido;
+                BuscarCliente(Clientela,Cliente.nombre,Cliente.apellido,Cliente);
+                }
+                if(queQuiere==2){
+                cout<<"Ingrese el id del cliente"<<endl;
+                cin>>Cliente.idCliente;
+                BuscarCliente(Clientela,Cliente.idCliente, Cliente);
+                }
+                if(queQuiere==3){
+                cout<<"Ingrese el email"<<endl;
+                cin>>Cliente.email;
+                BuscarCliente(Clientela,Cliente.email, Cliente);
+                }
+                str deporte;
+                double hora;
+                cout<<"¿A qué deporte quiere anotarse?. Ej: ¨Spinning¨, ¨Boxeo¨"<<endl;
+                cin>>deporte;
+                cout<<"¿A qué hora es la clase?. Ej: 10; 14; 9,5"<<endl;
+                cin>>hora;
+                eResultados verSiClase, verSiCupos;
+                sClase Clase;
+                verSiClase=BuscarClase(misClases,deporte,hora,Clase);
+                if(verSiClase==ErrNoExiste)
+                cout<<"No tenemos ese deporte en ese horario. Intente con otro"<<endl;
+                else {
+                verSiCupos=AnotarseClase(Cliente,Clase.idClase,Asistencias,misClases);
+                if (verSiCupos==ErrorNoHayCupos)
+                        cout<<"No hay cupos disponibles para esta clase. Intente en otro horario  ;)"<<endl;
+                else{
+                        if(verSiCupos==ErrExiste)
+                            cout<<"Ya se encuentra anotado a esa Clase"<<endl;
+                        else{
+                            if(verSiCupos==Exito)
+                                cout<<"Se realizo correctamente la operacion"<<endl;
+                        }
+                }
+                }
         }
     }
 
