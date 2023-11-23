@@ -5,6 +5,7 @@
 using namespace std;
 
 int main() {
+    //APERTURA DE ARCHIVOS
     /*
     //Apertura de Archivos para Lectura
     sClase *misClases;
@@ -45,6 +46,7 @@ int main() {
         return -1;
     infile.close();
 */
+
     sClientes Clientela;
     sClase *misClases;
     sAsistencias Asistencias;
@@ -169,6 +171,8 @@ int main() {
 
     return 0;
 }
+
+//Main para un cliente -sin rand- :)
 /*
 //GENERICO PARA CLIENTE ?
 while(variable!=5){
