@@ -375,3 +375,18 @@ eResultados AgregarAsistencia(sAsistencias &misAsistidos,uint idCliente,uint idC
     }
     return eResultados::ErrNoExiste;
 }
+
+eResultados EscribirAsistencias(sAsistencias misAsistencias){
+ofstream archibinwr("asistencias_1697673600000.dat", ios::binary);
+if (archibinwr.is_open()) {
+    for (uint i=0; i<misAsistencias.cantAsistencias; i++) {
+        archibinwr.write((char*)&misAsistencias.misAsistencias[i].idCliente, sizeof(uint));
+        archibinwr.write((char*)&misAsistencias.misAsistencias[i].cantInscriptos, sizeof(uint));
+        for(uint j = 0; j < misAsistencias.misAsistencias[i].cantInscriptos; j++) {
+            archibinwr.write((char*)&misAsistencias.misAsistencias[i].CursosInscriptos[j],sizeof(Inscripcion));
+        }
+    }
+}
+archibinwr.close();
+return eResultados::Exito;
+}

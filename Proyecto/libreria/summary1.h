@@ -108,8 +108,7 @@ void inicializarCupos (sClase* misClases);
 void inicializarCuposConAsist(sClase *misClases, sAsistencias misAsistencias);
 
 //Escritura de Archivos
-
-
+eResultados EscribirAsistencias(sAsistencias misAsistencias);
 
 
 #endif // ENCABEZADOS_H
