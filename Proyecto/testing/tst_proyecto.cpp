@@ -143,4 +143,47 @@ TEST_CASE("Funciones Importantes"){
 
         delete[] Cliente;
     }
+
+    SECTION ("Buscar Clase"){
+        sClase *misClases=new sClase[3];
+
+        misClases[0].CupoDisponible=45;
+        misClases[0].CupoMax=45;
+        misClases[0].idClase=1;
+        misClases[0].nombre= "Spinning";
+        misClases[0].horario= 8;
+
+        misClases[1].CupoDisponible=25;
+        misClases[1].CupoMax=25;
+        misClases[1].idClase=6;
+        misClases[1].nombre="Yoga";
+        misClases[1].horario=9;
+
+        misClases[2].CupoDisponible=15;
+        misClases[2].CupoMax=15;
+        misClases[2].idClase=12;
+        misClases[2].nombre= "Pilates";
+        misClases[2].horario= 8;
+
+        sClase Clase;
+        eResultados verificar;
+
+        //BUSCAR CLASE EXISTENTE
+        verificar=BuscarClase(misClases,"Yoga",9,Clase);
+        REQUIRE(verificar==Exito);
+        CHECK(Clase.idClase==misClases[1].idClase);
+        CHECK(Clase.horario==misClases[1].horario);
+        CHECK(Clase.nombre==misClases[1].nombre);
+        CHECK(Clase.CupoDisponible==misClases[1].CupoDisponible);
+        CHECK(Clase.CupoMax==misClases[1].CupoMax);
+
+        //BUSCAR CLASE NO EXISTENTE
+        verificar=BuscarClase(misClases,0,Clase);
+        REQUIRE(verificar==ErrNoExiste);
+
+    }
+
+    SECTION ("Anotarse a Clase"){
+
+    }
 }
