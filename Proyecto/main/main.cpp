@@ -23,7 +23,7 @@ int main() {
     ifstream miArchivo2;
     miArchivo2.open("iriClientesGYM.csv");
     if (!miArchivo2.is_open()){
-        cout << "Error opening csv file" << endl;
+        cout << "Error opening csv2 file" << endl;
         return 1;
     }
     eResultados lecturaCliente;
@@ -44,9 +44,6 @@ int main() {
     if(verificar==ErrEspacio)
         return -1;
     infile.close();
-
-
-
 
     EscribirAsistencias(Asistencias);
 
