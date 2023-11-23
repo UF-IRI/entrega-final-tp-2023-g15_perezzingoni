@@ -1,4 +1,5 @@
 #include "summary1.h"
+
 eResultados AgregarCliente(sClientes &Clientela, sCliente Cliente){
     if(Clientela.misClientes==nullptr)
         return eResultados::ErrEspacio;
@@ -107,7 +108,7 @@ eResultados CancelarClase(sCliente Cliente, sClase Clase, sAsistencias &misInscr
             for(uint k=0;k<misInscriptos.misAsistencias[j].cantInscriptos; k++){
                 if(misInscriptos.misAsistencias[j].CursosInscriptos[k].idCurso==Clase.idClase){
                     for(uint a=k;a<misInscriptos.misAsistencias[j].cantInscriptos; a++){
-                        misInscriptos.misAsistencias[j].CursosInscriptos[a]=misInscriptos.misAsistencias[j].CursosInscriptos[a];
+                        misInscriptos.misAsistencias[j].CursosInscriptos[a]=misInscriptos.misAsistencias[j].CursosInscriptos[a+1];
                     }
                     misInscriptos.misAsistencias[j].cantInscriptos--;
                     return eResultados::Exito;
@@ -342,7 +343,7 @@ eResultados AnotarseClase(sCliente Cliente, uint idClase, sAsistencias &misAsist
             else{
                 evitar= AgregarAsistencia(misAsistidos,Cliente.idCliente,idClase);
                 if(evitar==Exito){
-                    misClases[i].CupoDisponible--;
+                    ModificarCupos(misClases,-1,misClases[i].idClase);
                     return eResultados::Exito;
                 }else
                     return eResultados::ErrExiste;

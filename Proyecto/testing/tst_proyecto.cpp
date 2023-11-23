@@ -180,10 +180,8 @@ TEST_CASE("Funciones Importantes"){
         //BUSCAR CLASE NO EXISTENTE
         verificar=BuscarClase(misClases,0,Clase);
         REQUIRE(verificar==ErrNoExiste);
+        delete[] misClases;
 
     }
 
-    SECTION ("Anotarse a Clase"){
-
-    }
 }
