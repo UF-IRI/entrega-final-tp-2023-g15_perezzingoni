@@ -110,11 +110,12 @@ eResultados CancelarClase(sCliente Cliente, sClase Clase, sAsistencias &misInscr
                         misInscriptos.misAsistencias[j].CursosInscriptos[a]=misInscriptos.misAsistencias[j].CursosInscriptos[a];
                     }
                     misInscriptos.misAsistencias[j].cantInscriptos--;
+                    return eResultados::Exito;
                 }
             }
         }
     }
-    return eResultados::Exito;
+    return eResultados::Error;
 }
 
 eResultados ModificarCupos(sClase *misClases, int cambio, uint idClase){

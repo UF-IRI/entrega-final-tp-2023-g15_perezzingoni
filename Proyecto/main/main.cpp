@@ -49,9 +49,10 @@ int main() {
     sAsistencias Asistencias;
 
     int variable=0;
+
     while(variable!=5){
         cout<< "Ingrese (con un numero) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
-        cout<< "3. Reservar una Clase" << endl << "4. Desanotarde de una Clase" << endl << "5. Finlaizar" << endl;
+        cout<< "3. Reservar una Clase" << endl << "4. Desanotarse de una Clase" << endl << "5. Finlaizar" << endl;
         cin>>variable;
         if(variable==1){//Agregar nuevo Cliente
             sCliente nuevo;
@@ -175,7 +176,51 @@ int main() {
                 }
                 }
         }
-    }
+
+        if(variable==4){//Desaanotarse de Clase
+                int queQuiere;
+                sCliente Cliente;
+                cout<< "¿Cómo quiere buscar al cliente para modificarlo? (Ingrese un numero)"<<endl;
+                        cout<< "1. Nombre y Apellido" <<endl << "2.El Id del cliente"<<endl <<"3.Email"<<endl;
+                cin>> queQuiere;
+                if(queQuiere==1){
+                cout<<"Ingrese el nombre"<<endl;
+                cin>>Cliente.nombre;
+                cout<<"Ingrese el apellido"<<endl;
+                cin>>Cliente.apellido;
+                BuscarCliente(Clientela,Cliente.nombre,Cliente.apellido,Cliente);
+                }
+                if(queQuiere==2){
+                cout<<"Ingrese el id del cliente"<<endl;
+                cin>>Cliente.idCliente;
+                BuscarCliente(Clientela,Cliente.idCliente, Cliente);
+                }
+                if(queQuiere==3){
+                cout<<"Ingrese el email"<<endl;
+                cin>>Cliente.email;
+                BuscarCliente(Clientela,Cliente.email, Cliente);
+                }
+                str deporte;
+                double hora;
+                cout<<"¿A qué deporte quiere anotarse?. Ej: ¨Spinning¨, ¨Boxeo¨"<<endl;
+                    cin>>deporte;
+                cout<<"¿A qué hora es la clase?. Ej: 10; 14; 9,5"<<endl;
+                            cin>>hora;
+                eResultados verSiClase, verificar;
+                sClase Clase;
+                verSiClase=BuscarClase(misClases,deporte,hora,Clase);
+                if(verSiClase==ErrNoExiste)
+                cout<<"No tenemos ese deporte en ese horario. Intente nuevamente"<<endl;
+                else {
+                verificar=CancelarClase(Cliente,Clase,Asistencias,misClases);
+                if(verificar)
+                        cout<<"Se realizo la operacion"<<endl;
+                else
+                        cout<<"Hubo un problema. Puede que no estuviera anotado a esta clase o hubo otro error del sistema"<<endl;
+                }
+                }
+        }
+
 
 //    EscribirAsistencias(Asistencias);
 

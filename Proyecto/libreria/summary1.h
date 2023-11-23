@@ -87,7 +87,7 @@ eResultados AnotarseClase(sCliente Cliente, uint idClase, sAsistencias &misAsist
 eResultados AgregarAsistencia(sAsistencias &misAsistidos, uint idCliente, uint idClase);
 
 //Cancelar clase
-eResultados CancelarClase(sCliente Cliente, sClase _Clase, Asistencia &misInscriptos, sClase *misClases);
+eResultados CancelarClase(sCliente Cliente, sClase _Clase, sAsistencias &misInscriptos, sClase *misClases);
 
 //Modificar cupos (sumar o restar)
 eResultados ModificarCupos(sClase *misClases, int cambio, uint idClase);
