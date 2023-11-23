@@ -74,7 +74,7 @@ int main() {
             }else {
                     if(verificar==ErrExiste){
                         cout<<"El cliente ya exite"<<endl;
-                    }else cout<< "Hubo un problema en el sistema. Disculpe las molestias. intente nuevamente"<<endl;
+                    }else cout<< "Hubo un problema en el sistema. Disculpe las molestias. Intente nuevamente"<<endl;
                     }
         }
 
@@ -101,6 +101,33 @@ int main() {
                 cin>>Cliente.email;
                 BuscarCliente(Clientela,Cliente.email, Cliente);
             }
+            sCliente modificado;
+            cout<<"Ingrese los datos modificados para el cliente (El id se va a mantener igual)"<<endl;
+            cout<<"Ingrese su nombre";
+            cin>>modificado.nombre;
+            cout<<"Ingrese su apellido";
+            cin>>modificado.apellido;
+            cout<<"Ingrese su email";
+            cin>>modificado.email;
+            cout<<"Ingrese su telefono";
+            cin>>modificado.telefono;
+            cout<<"Ingrese su fecha de nacimiento";
+            cin>>modificado.fechaNac;
+            cout<<"Ingrese su estado";
+            cin>>modificado.estado;
+            modificado.idCliente=Cliente.idCliente;
+            eResultados verificar;
+            verificar=ActualizarCliente(Clientela,modificado,Cliente);
+            if(verificar==Exito)
+                cout<<"Se realizó con exito la operacion"<<endl;
+            else
+                if(verificar==ErrNoExiste)
+                cout<<"El cliente que quiere actualizar no se encuentra en el sistema. Intentelo nuevamente o ingrese un nuevo cliente"<<endl;
+                else
+                cout<<"Hubo un problema en el sistema. Disculpe las molestias. Intente nuevamente"<<endl;
+        }
+
+        if(variable==3){
 
         }
     }
