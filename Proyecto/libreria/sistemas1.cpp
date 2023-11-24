@@ -153,6 +153,7 @@ eResultados LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
         longitud++;
 
     //vuelvo al principio del archivo
+    miArchivo.clear();
     miArchivo.seekg(ios::beg);
     getline(miArchivo, primerLinea);
 
@@ -239,13 +240,15 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
     delete[] Asistencias.misAsistencias;
     Asistencias.misAsistencias=aux;
 
+    uint aux2=0;
     while (!miArchivo.eof()) {
-        miArchivo.read((char *)&aux->idCliente, sizeof(uint));
-        miArchivo.read((char *)&aux->cantInscriptos, sizeof(uint));
+        miArchivo.read((char *)&aux[i].idCliente, sizeof(uint));
+        miArchivo.read((char *)&aux2, sizeof(uint));
 
-        Inscripcion *auxInscriptos = new Inscripcion[aux->cantInscriptos];
-        for (uint i = 0; i < aux->cantInscriptos; i++) {
-            miArchivo.read((char *)auxInscriptos, sizeof(Inscripcion));
+        aux[i].cantInscriptos=aux2;
+        Inscripcion *auxInscriptos = new Inscripcion[aux2];
+        for (uint j = 0; j < aux2; j++) {
+            miArchivo.read((char *)&auxInscriptos[j], sizeof(Inscripcion));
         }
         aux[i].CursosInscriptos = auxInscriptos;
         resizeAsistencias(Asistencias,longitud,longitud+1);

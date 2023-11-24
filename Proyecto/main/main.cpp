@@ -8,11 +8,12 @@ int main() {
 
     //APERTURA DE ARCHIVOS
     //Apertura de Archivos para Lectura
-    sClase *misClases;
+    sClase *misClases= new sClase [1];
     ifstream miArchivo1;
     miArchivo1.open("iriClasesGYM.csv");
     if (!miArchivo1.is_open()){
         cout << "Error opening csv file" << endl;
+        delete[] misClases;
         return 1;
     }
     eResultados lecturaClase;
@@ -22,10 +23,13 @@ int main() {
     miArchivo1.close();
 
     sClientes Clientela;
+    sCliente *misClientes=new sCliente[1];
+    Clientela.misClientes=misClientes;
     ifstream miArchivo2;
     miArchivo2.open("iriClientesGYM.csv");
     if (!miArchivo2.is_open()){
         cout << "Error opening csv2 file" << endl;
+        delete[] misClientes;
         return 1;
     }
     eResultados lecturaCliente;
@@ -35,9 +39,12 @@ int main() {
     miArchivo2.close();
 
     sAsistencias Asistencias;
+    Asistencia *misAsistencias=new Asistencia[1];
+    Asistencias.misAsistencias=misAsistencias;
     ifstream infile("asistencias_1697673600000.dat", ios::binary);
     if (!infile.is_open()) {
         cout << "Error opening binary file" << endl;
+        delete[] misAsistencias;
         return 1;
     }
     eResultados lecturaAsistencias;
