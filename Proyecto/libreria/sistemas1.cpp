@@ -251,8 +251,9 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
             miArchivo.read((char *)&auxInscriptos[j], sizeof(Inscripcion));
         }
         aux[i].CursosInscriptos = auxInscriptos;
-        resizeAsistencias(Asistencias,longitud,longitud+1);
+        resizeAsistencias(Asistencias.misAsistencias,longitud,longitud+1);
         longitud++;
+        Asistencias.cantMax++;
         i++;
     }
     Asistencias.cantAsistencias=longitud;
@@ -262,18 +263,17 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
     return eResultados::Exito;
 }
 
-void resizeAsistencias(sAsistencias &misAsistencias, uint tam, uint nuevoTam){
-    if(misAsistencias.misAsistencias==nullptr)
+void resizeAsistencias(Asistencia *&misAsistencias, uint tam, uint nuevoTam){
+    if(misAsistencias==nullptr)
         return;
 
-    Asistencia * aux=new Asistencia[nuevoTam];
+    Asistencia * nuevo=new Asistencia[nuevoTam];
     int longitud = (tam < nuevoTam) ? tam: nuevoTam;
 
     for(int i=0;i<longitud;i++)
-        aux[i] =misAsistencias.misAsistencias[i];
-    delete[] misAsistencias.misAsistencias;
-    misAsistencias.misAsistencias = aux;
-    misAsistencias.cantMax=nuevoTam;
+        nuevo[i] =misAsistencias[i];
+    delete[] misAsistencias;
+    misAsistencias = nuevo;
     return;
 }
 
