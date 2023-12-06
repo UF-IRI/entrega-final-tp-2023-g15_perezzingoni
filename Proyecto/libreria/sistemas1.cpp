@@ -233,27 +233,25 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
         return eResultados::ErrEspacio;
 
     str linea;
-    unsigned int longitud;
 
-    longitud= sizeof(miArchivo)/sizeof(Asistencia);
-
-    Asistencia *aux =new  Asistencia [longitud];
+    Asistencia *aux =new  Asistencia [250];
     delete[] Asistencias.misAsistencias;
     Asistencias.misAsistencias=aux;
-    Asistencias.cantMax=longitud;
-    Asistencias.cantAsistencias=longitud;
+    Asistencias.cantMax=250;
+    Asistencias.cantAsistencias=0;
 
     uint aux2=0;
-    for(uint i=0;i<longitud;i++){
-        miArchivo.read((char *)&aux[i].idCliente, sizeof(uint));
+    while(!miArchivo.eof()){
+        miArchivo.read((char *)&aux[Asistencias.cantAsistencias].idCliente, sizeof(uint));
         miArchivo.read((char *)&aux2, sizeof(uint));
 
-        aux[i].cantInscriptos=aux2;
+        aux[Asistencias.cantAsistencias].cantInscriptos=aux2;
         Inscripcion *auxInscriptos = new Inscripcion[aux2];
         for (uint j = 0; j < aux2; j++) {
             miArchivo.read((char *)&auxInscriptos[j], sizeof(Inscripcion));
         }
-        aux[i].CursosInscriptos = auxInscriptos;
+        aux[Asistencias.cantAsistencias].CursosInscriptos = auxInscriptos;
+        Asistencias.cantAsistencias++;
     }
 
     RepetidosAsist(Asistencias);

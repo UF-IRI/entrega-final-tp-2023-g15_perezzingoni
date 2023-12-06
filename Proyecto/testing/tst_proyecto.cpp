@@ -1,18 +1,16 @@
 #include <catch2/catch.hpp>
 #include "summary1.h"
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
 
 TEST_CASE("Leer archivos")
 {
 
     SECTION("Archivo Clientes") {
 
-        u_int cantClientes;
-        sCliente *Clientes, ClientePrueba;
-        eResultados errArchivocliente;
-        sClientes Clientela;
-        Clientela.CantClientes=0;
-        Clientela.CantMaxima=0;
-        Clientela.misClientes=Clientes;
+        sCliente ClientePrueba;
 
         ClientePrueba.idCliente = 206;
         ClientePrueba.apellido = "Torres";
@@ -22,65 +20,70 @@ TEST_CASE("Leer archivos")
         ClientePrueba.nombre = "Mateo";
         ClientePrueba.telefono = "844-131-1318";
 
-        ifstream infileClientes("../iriClientesGYM.csv");
+        sClientes Clientela;
+        sCliente *misClientes=new sCliente[1];
+        Clientela.misClientes=misClientes;
+        ifstream miArchivo2;
+        miArchivo2.open("iriClientesGYM.csv");
 
-        errArchivocliente = LeerArchivoClientes(infileClientes,Clientela);
+        eResultados lecturaCliente;
+        lecturaCliente = LeerArchivoClientes (miArchivo2, Clientela);
 
-        REQUIRE(errArchivocliente == Exito);
-        REQUIRE(cantClientes == 250);
-        REQUIRE(Clientes[205].apellido == ClientePrueba.apellido);
-        REQUIRE(Clientes[205].idCliente == ClientePrueba.idCliente);
-        REQUIRE(Clientes[205].email == ClientePrueba.email);
-        REQUIRE(Clientes[205].estado == ClientePrueba.estado);
-        REQUIRE(Clientes[205].fechaNac == ClientePrueba.fechaNac);
-        REQUIRE(Clientes[205].nombre == ClientePrueba.nombre);
-        REQUIRE(Clientes[205].telefono == ClientePrueba.telefono);
+        miArchivo2.close();
 
-        infileClientes.close();
+        REQUIRE(lecturaCliente == Exito);
+        REQUIRE(Clientela.CantClientes == 250);
+        REQUIRE(Clientela.misClientes[205].apellido == ClientePrueba.apellido);
+        REQUIRE(Clientela.misClientes[205].idCliente == ClientePrueba.idCliente);
+        REQUIRE(Clientela.misClientes[205].email == ClientePrueba.email);
+        REQUIRE(Clientela.misClientes[205].estado == ClientePrueba.estado);
+        REQUIRE(Clientela.misClientes[205].fechaNac == ClientePrueba.fechaNac);
+        REQUIRE(Clientela.misClientes[205].nombre == ClientePrueba.nombre);
+        REQUIRE(Clientela.misClientes[205].telefono == ClientePrueba.telefono);
 
-        delete []Clientes;
+        delete []misClientes;
     }
 
     SECTION("Archivo Clases") {
 
-        u_int cantclases;
-        sClase *Clases, ClasePrueba;
-        eResultados errArchivoclase;
+        sClase ClasePrueba;
 
         ClasePrueba.idClase = 9;
         ClasePrueba.nombre = "Yoga";
         ClasePrueba.horario = 15;
         ClasePrueba.CupoMax = 25;
 
-        ifstream infileClases("../iriClasesGYM.csv");
+        sClase *misClases= new sClase [1];
+        ifstream miArchivo1;
+        miArchivo1.open("iriClasesGYM.csv");
 
-        errArchivoclase = LeerArchivoClases(infileClases, &Clases);
+        eResultados lecturaClase;
 
-        REQUIRE(errArchivoclase == Exito);
-        REQUIRE(cantclases == 60);
-        REQUIRE(Clases[8].idClase == ClasePrueba.idClase);
-        REQUIRE(Clases[8].nombre == ClasePrueba.nombre);
-        REQUIRE(Clases[8].horario == ClasePrueba.horario);
-        REQUIRE(Clases[8].CupoMax == ClasePrueba.CupoMax);
+        lecturaClase = LeerArchivoClases(miArchivo1, &misClases);
+        miArchivo1.close();
 
-        infileClases.close();
+        REQUIRE(lecturaClase == Exito);
+        REQUIRE(misClases[8].idClase == ClasePrueba.idClase);
+        REQUIRE(misClases[8].nombre == ClasePrueba.nombre);
+        REQUIRE(misClases[8].horario == ClasePrueba.horario);
+        REQUIRE(misClases[8].CupoMax == ClasePrueba.CupoMax);
 
-        delete []Clases;
+        delete []misClases;
     }
 
     SECTION("Archivo Aistencia") {
         sAsistencias Asistencias;
-        eResultados errBinario;
+        Asistencia *misAsistencias=new Asistencia[1];
+        Asistencias.misAsistencias=misAsistencias;
+        ifstream infile("asistencias_1697673600000.dat", ios::binary);
+        eResultados lecturaAsistencias;
+        lecturaAsistencias= LeerArchivoAsistencias(infile, Asistencias);
+        infile.close();
 
-        ifstream archivobin("../asistencias_1697673600000.dat", ios::binary);
-
-        errBinario = LeerArchivoAsistencias(archivobin, Asistencias);
-
-        REQUIRE(errBinario == Exito);
+        REQUIRE(lecturaAsistencias== Exito);
 
         delete[] Asistencias.misAsistencias;
 
-        archivobin.close();
     }
 
 }

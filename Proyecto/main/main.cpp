@@ -52,12 +52,14 @@ int main() {
     if(lecturaAsistencias==ErrEspacio)
         return -1;
     infile.close();
+    cout<<Asistencias.cantAsistencias;
 
+    inicializarCuposConAsist(misClases, Asistencias);
 
     //SIMULACIÓN <3
     int variable=0;
     while(variable!=5){
-        cout<< "Ingrese (con un numero) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
+        cout<< endl<<"Ingrese (con un numero) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
         cout<< "3. Reservar una Clase" << endl << "4. Desanotarse de una Clase" << endl << "5. Finlaizar" << endl;
         cin>>variable;
         if(variable==1){//Agregar nuevo Cliente
@@ -187,93 +189,6 @@ int main() {
 /*
 //GENERICO PARA CLIENTE ?
     int variable=0;
-    //Como no funciona archivos, me creo los míos
-    sCliente *Cliente= new sCliente[4];
-
-    Cliente[0].idCliente= 1;
-    Cliente[0].nombre= "Agustín";
-    Cliente[0].apellido= "Guerra";
-    Cliente[0].email="AgustínGuerra@bolandia.iri";
-    Cliente[0].telefono= "462-285-2783";
-    Cliente[0].fechaNac= "10-12-1966";
-    Cliente[0].estado= 0;
-
-    Cliente[1].idCliente= 2;
-    Cliente[1].nombre= "Emilio";
-    Cliente[1].apellido= "Romero";
-    Cliente[1].email="EmilioRomer@bolandia.iri";
-    Cliente[1].telefono= "317-427-6829";
-    Cliente[1].fechaNac= "14-08-1998";
-    Cliente[1].estado= -3241;
-
-    Cliente[2].idCliente= 3;
-    Cliente[2].nombre= "Tomás";
-    Cliente[2].apellido= "Lanaro";
-    Cliente[2].email="TomásLanaro@bolandia.iri";
-    Cliente[2].telefono= "426-646-4494";
-    Cliente[2].fechaNac= "19-02-1996";
-    Cliente[2].estado= 8313;
-
-    Cliente[3].idCliente= 4;
-    Cliente[3].nombre= "Gabriel";
-    Cliente[3].apellido= "Hernández";
-    Cliente[3].email="GabrielHernández@bolandia.iri";
-    Cliente[3].telefono= "527-298-4006";
-    Cliente[3].fechaNac= "02-05-1990";
-    Cliente[3].estado= 0;
-
-    sClientes Clientela;
-    Clientela.CantClientes=4;
-    Clientela.CantMaxima=4;
-    Clientela.misClientes=Cliente;
-
-    sClase *misClases=new sClase[3];
-
-    misClases[0].CupoDisponible=45;
-    misClases[0].CupoMax=45;
-    misClases[0].idClase=1;
-    misClases[0].nombre= "Spinning";
-    misClases[0].horario= 8;
-
-    misClases[1].CupoDisponible=25;
-    misClases[1].CupoMax=25;
-    misClases[1].idClase=6;
-    misClases[1].nombre="Yoga";
-    misClases[1].horario=9;
-
-    misClases[2].CupoDisponible=15;
-    misClases[2].CupoMax=15;
-    misClases[2].idClase=12;
-    misClases[2].nombre= "Pilates";
-    misClases[2].horario= 8;
-
-    Inscripcion* Inscriptos1=new Inscripcion[1];
-    Inscriptos1[0].idCurso= 12;
-    Inscripcion* Inscriptos2=new Inscripcion[2];
-    Inscriptos2[0].idCurso= 6;
-    Inscriptos2[1].idCurso= 12;
-    Inscripcion* Inscriptos3=new Inscripcion[1];
-    Inscriptos3[0].idCurso=1;
-
-    Asistencia *misAsistencias=new Asistencia[3];
-    misAsistencias[0].cantInscriptos=1;
-    misAsistencias[0].idCliente=1;
-    misAsistencias[0].CursosInscriptos=Inscriptos1;
-
-    misAsistencias[1].cantInscriptos=2;
-    misAsistencias[1].idCliente=2;
-    misAsistencias[1].CursosInscriptos=Inscriptos2;
-
-    misAsistencias[2].cantInscriptos=1;
-    misAsistencias[2].idCliente=3;
-    misAsistencias[2].CursosInscriptos=Inscriptos3;
-
-    sAsistencias Asistencias;
-    Asistencias.cantAsistencias=3;
-    Asistencias.cantMax=3;
-    Asistencias.misAsistencias=misAsistencias;
-
-    inicializarCuposConAsist(misClases,Asistencias);
 
     while(variable!=5){
         cout<<endl<< "Ingrese (con un numero) lo que desea hacer"<< endl << "1. Agregar un Cliente"<< endl << "2. Modificar un Cliente"<< endl;
