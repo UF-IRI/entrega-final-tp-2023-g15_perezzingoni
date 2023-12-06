@@ -233,15 +233,18 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
         return eResultados::ErrEspacio;
 
     str linea;
-    unsigned int longitud=1;
-    int i=0;
+    unsigned int longitud;
+
+    longitud= sizeof(miArchivo)/sizeof(Asistencia);
 
     Asistencia *aux =new  Asistencia [longitud];
     delete[] Asistencias.misAsistencias;
     Asistencias.misAsistencias=aux;
+    Asistencias.cantMax=longitud;
+    Asistencias.cantAsistencias=longitud;
 
     uint aux2=0;
-    while (!miArchivo.eof()) {
+    for(uint i=0;i<longitud;i++){
         miArchivo.read((char *)&aux[i].idCliente, sizeof(uint));
         miArchivo.read((char *)&aux2, sizeof(uint));
 
@@ -251,30 +254,11 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
             miArchivo.read((char *)&auxInscriptos[j], sizeof(Inscripcion));
         }
         aux[i].CursosInscriptos = auxInscriptos;
-        resizeAsistencias(Asistencias.misAsistencias,longitud,longitud+1);
-        longitud++;
-        Asistencias.cantMax++;
-        i++;
     }
-    Asistencias.cantAsistencias=longitud;
-    Asistencias.cantMax=longitud;
+
     RepetidosAsist(Asistencias);
 
     return eResultados::Exito;
-}
-
-void resizeAsistencias(Asistencia *&misAsistencias, uint tam, uint nuevoTam){
-    if(misAsistencias==nullptr)
-        return;
-
-    Asistencia * nuevo=new Asistencia[nuevoTam];
-    int longitud = (tam < nuevoTam) ? tam: nuevoTam;
-
-    for(int i=0;i<longitud;i++)
-        nuevo[i] =misAsistencias[i];
-    delete[] misAsistencias;
-    misAsistencias = nuevo;
-    return;
 }
 
 void RepetidosAsist(sAsistencias &Asistencias){
@@ -283,7 +267,7 @@ void RepetidosAsist(sAsistencias &Asistencias){
             for(uint k=0;k<Asistencias.misAsistencias[i].cantInscriptos;k++){
                 if(Asistencias.misAsistencias[j].CursosInscriptos->idCurso==Asistencias.misAsistencias[k].CursosInscriptos->idCurso){
                     Asistencias.misAsistencias[i].cantInscriptos--;
-                    for(uint a=k;a<Asistencias.misAsistencias[i].cantInscriptos;k++)
+                    for(uint a=k;a<Asistencias.misAsistencias[i].cantInscriptos;a++)
                         Asistencias.misAsistencias->CursosInscriptos[a]=Asistencias.misAsistencias->CursosInscriptos[a+1];
                 }
             }

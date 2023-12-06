@@ -100,7 +100,6 @@ eResultados BuscarClase(sClase *misClases, uint idClase, sClase &Clase, int Cant
 eResultados LeerArchivoClases (ifstream &miArchivo, sClase **misClases);
 eResultados LeerArchivoClientes (ifstream &miArchivo, sClientes &Clientela);
 eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencias);
-void resizeAsistencias(Asistencia *&misAsistencias, uint tam, uint nuevoTam);
 void RepetidosAsist(sAsistencias &Asistencias);
 
 //Cupos
