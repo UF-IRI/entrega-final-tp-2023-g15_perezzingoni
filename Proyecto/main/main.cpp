@@ -53,7 +53,6 @@ int main() {
         return -1;
     infile.close();
     cout<<Asistencias.cantAsistencias;
-
     inicializarCuposConAsist(misClases, Asistencias);
 
     //SIMULACIÓN <3
@@ -126,7 +125,10 @@ int main() {
             IdCliente= rand() % Clientela.CantClientes + 1;
             BuscarCliente(Clientela, IdCliente, Cliente);
             int IdClase;
+            cout<<Cliente.nombre<< "  ";
+            cout<<Cliente.idCliente<<endl;
             IdClase= rand() % 60 + 1;
+            cout<< IdClase;
             eResultados verSiClase, verSiCupos;
             sClase Clase;
             verSiClase=BuscarClase(misClases,IdClase,Clase,60);

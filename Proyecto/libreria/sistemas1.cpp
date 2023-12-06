@@ -364,8 +364,9 @@ eResultados AgregarAsistencia(sAsistencias &misAsistidos,uint idCliente,uint idC
 }
 
 eResultados EscribirAsistencias(sAsistencias misAsistencias){
-ofstream archibinwr("asistencias_1697673600000.dat", ios::binary);
-if (archibinwr.is_open()) {
+    fstream archibinwr("asistencias_1697673600000.dat", ios::binary);
+    archibinwr.seekg(ios::beg);
+    if (archibinwr.is_open()) {
     for (uint i=0; i<misAsistencias.cantAsistencias; i++) {
         archibinwr.write((char*)&misAsistencias.misAsistencias[i].idCliente, sizeof(uint));
         archibinwr.write((char*)&misAsistencias.misAsistencias[i].cantInscriptos, sizeof(uint));
