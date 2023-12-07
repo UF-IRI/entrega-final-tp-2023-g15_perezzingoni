@@ -356,8 +356,19 @@ eResultados AgregarAsistencia(sAsistencias &misAsistidos,uint idCliente,uint idC
                 misAsistidos.misAsistencias[i].CursosInscriptos=aux;
                 return eResultados::Exito;
             }
-
+            
+        }else{
+            Asistencia nuevo;
+            nuevo.cantInscriptos=1;
+            nuevo.idCliente=idCliente;
+            Inscripcion* aux=new Inscripcion[1];
+            aux[0].idCurso=idClase;
+            nuevo.CursosInscriptos= aux;
+            misAsistidos.misAsistencias[misAsistidos.cantAsistencias]=nuevo;
+            misAsistidos.cantAsistencias++;
+            return eResultados::Exito;
         }
+            
     }
     return eResultados::ErrNoExiste;
 }
