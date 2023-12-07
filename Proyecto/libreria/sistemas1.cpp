@@ -173,8 +173,6 @@ eResultados LeerArchivoClases(ifstream &miArchivo, sClase **misClases){
         i++;
     }
 
-    inicializarCupos(aux);
-
     return eResultados::Exito;
 }
 
@@ -196,6 +194,7 @@ eResultados LeerArchivoClientes(ifstream &miArchivo, sClientes &Clientela){
         longitud++;
 
     //vuelvo al principio del archivo
+    miArchivo.clear();
     miArchivo.seekg(ios::beg);
     getline(miArchivo, primerLinea);
 
@@ -286,32 +285,32 @@ void inicializarCupos(sClase *misClases){
     //inicializa todos los cupos de las distintas clases y musculacion
     for(int i=0;i<60;i++){
         if(misClases[i].nombre=="Spinning"){
-            misClases->CupoDisponible=45;
-            misClases->CupoMax=45;
+            misClases[i].CupoDisponible=45;
+            misClases[i].CupoMax=45;
         }
         if(misClases[i].nombre=="Yoga"){
-            misClases->CupoDisponible=25;
-            misClases->CupoMax=25;
+            misClases[i].CupoDisponible=25;
+            misClases[i].CupoMax=25;
         }
         if(misClases[i].nombre=="Pilates"){
-            misClases->CupoDisponible=15;
-            misClases->CupoMax=15;
+            misClases[i].CupoDisponible=15;
+            misClases[i].CupoMax=15;
         }
         if(misClases[i].nombre=="Stretching"){
-            misClases->CupoDisponible=40;
-            misClases->CupoMax=40;
+            misClases[i].CupoDisponible=40;
+            misClases[i].CupoMax=40;
         }
         if(misClases[i].nombre=="Zumba"){
-            misClases->CupoDisponible=50;
-            misClases->CupoMax=50;
+            misClases[i].CupoDisponible=50;
+            misClases[i].CupoMax=50;
         }
         if(misClases[i].nombre=="Boxeo"){
-            misClases->CupoDisponible=30;
-            misClases->CupoMax=30;
+            misClases[i].CupoDisponible=30;
+            misClases[i].CupoMax=30;
         }
         if(misClases[i].nombre=="Musculacion"){
-            misClases->CupoDisponible=30;
-            misClases->CupoMax=30;
+            misClases[i].CupoDisponible=30;
+            misClases[i].CupoMax=30;
         }
     }
 }
@@ -365,6 +364,7 @@ eResultados AgregarAsistencia(sAsistencias &misAsistidos,uint idCliente,uint idC
 
 eResultados EscribirAsistencias(sAsistencias misAsistencias){
     fstream archibinwr("asistencias_1697673600000.dat", ios::binary);
+    archibinwr.clear();
     archibinwr.seekg(ios::beg);
     if (archibinwr.is_open()) {
     for (uint i=0; i<misAsistencias.cantAsistencias; i++) {

@@ -103,7 +103,7 @@ eResultados LeerArchivoAsistencias(ifstream &miArchivo, sAsistencias &Asistencia
 void RepetidosAsist(sAsistencias &Asistencias);
 
 //Cupos
-void inicializarCupos (sClase* misClases);
+void inicializarCupos (sClase *misClases);
 void inicializarCuposConAsist(sClase *misClases, sAsistencias misAsistencias);
 
 //Escritura de Archivos

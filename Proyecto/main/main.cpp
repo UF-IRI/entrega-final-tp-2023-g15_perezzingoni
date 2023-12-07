@@ -21,6 +21,8 @@ int main() {
     if(lecturaClase==ErrEspacio)
         return -1;
     miArchivo1.close();
+    inicializarCupos(misClases);
+    cout<< misClases[1].CupoDisponible;
 
     sClientes Clientela;
     sCliente *misClientes=new sCliente[1];
@@ -128,10 +130,12 @@ int main() {
             cout<<Cliente.nombre<< "  ";
             cout<<Cliente.idCliente<<endl;
             IdClase= rand() % 60 + 1;
-            cout<< IdClase;
             eResultados verSiClase, verSiCupos;
             sClase Clase;
             verSiClase=BuscarClase(misClases,IdClase,Clase,60);
+            cout<< Clase.idClase<<"-";
+            cout<< Clase.CupoDisponible<<"-";
+            cout<< Clase.nombre;
             if(verSiClase==ErrNoExiste)
                 cout<<"No tenemos ese deporte en ese horario. Intente con otro"<<endl;
             else {
